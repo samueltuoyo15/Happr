@@ -1,158 +1,82 @@
-# ✨ Vite + React + TypeScript + Vercel Template ✨
+# **Happr - Send Smiles, Support Dreams**
 
-A modern and streamlined template for building high-performance web applications using **React**, **TypeScript**, and **Vite**, with **Vercel serverless functions** seamlessly integrated. Ready for rapid development and deployment on **Vercel**! 🚀
+## Overview
+Happr is a modern web application template built with React, Vite, and TypeScript, designed for seamless deployment on Vercel. It demonstrates a foundational setup for a client-side application capable of interacting with serverless functions. 🚀
 
----
+## Features
+- **Modern Frontend Stack**: Leverages React for dynamic user interfaces, Vite for fast development, and TypeScript for robust type safety.
+- **Optimized Development Experience**: Utilizes Vite for an incredibly fast development server and efficient build process.
+- **Serverless Function Integration**: Demonstrates interaction with backend serverless functions (simulated via `/api/handler` endpoint) for both GET and POST requests.
+- **Vercel Deployment Ready**: Configured for straightforward deployment to Vercel, ideal for projects utilizing serverless architecture.
+- **Linting & Formatting**: Enforces code quality and consistency with ESLint and TypeScript ESLint configurations.
 
-## 🛠️ Installation
+## Getting Started
+To get this project up and running on your local machine, follow these steps.
 
-Get started with these simple steps:
-
-### 1️⃣ Clone the Repository:
+### Installation
+▶️ **Clone the Repository**:
 ```bash
-git clone git@github.com:Charmingdc/vite-react-ts-vercel-template.git
-cd vite-react-ts-vercel-template
+git clone git@github.com:Charmingdc/Happr
+cd Happr/client
 ```
 
-### 2️⃣ Install Dependencies:
+📦 **Install Dependencies**:
 ```bash
-npm install  # or yarn install, pnpm install
+npm install
 ```
 
-### 3️⃣ Start the API Server:
-For local development, start the Vercel serverless function:
+### Environment Variables
+This project currently does not require any specific environment variables for local development beyond what is handled by Vite's default setup.
+
+## Usage
+Once the dependencies are installed, you can start the development server:
+
+▶️ **Run Development Server**:
 ```bash
-vercel dev --listen 3000
+npm run dev
 ```
+This will start the Vite development server, usually accessible at `http://localhost:5173`.
 
-### 4️⃣ Start the Frontend Development Server:
-```bash
-npm run dev  # or yarn dev, pnpm dev
-```
-This will launch the app at `http://localhost:5173`.
+Upon launching the application, you will see a simple interface that demonstrates fetching data from a serverless function via a GET request and sending data via a POST request.
 
-Alternatively, you can use the Vercel CLI to handle both frontend and serverless functions (Note: **Memory-intensive!**):
-```bash
-vercel dev
-```
+- The "GET Request Response" section will automatically display a message fetched from the `/api/handler` endpoint on page load.
+- The "POST Request Response" section allows you to click a button to send a POST request to the same endpoint and view its response.
 
----
+## Technologies Used
 
-## 💻 Usage
+| Technology    | Description                                                                                             |
+| :------------ | :------------------------------------------------------------------------------------------------------ |
+| **React**     | A JavaScript library for building user interfaces.                                                      |
+| **Vite**      | A next-generation frontend tooling that provides a fast and opinionated development experience.         |
+| **TypeScript**| A typed superset of JavaScript that compiles to plain JavaScript.                                       |
+| **ESLint**    | A pluggable linting utility for JavaScript and TypeScript.                                              |
+| **Vercel**    | Cloud platform for static sites and serverless functions, used for deployment.                          |
 
-This template is built for ease of use and extension. Below are key usage examples:
+## Contributing
+We welcome contributions to Happr! To contribute:
 
-### 📡 API Requests
-This template includes a **pre-configured** `/api` endpoint for Vercel serverless functions.
+✨ **Fork the repository.**
+🌿 **Create a new branch** for your features or bug fixes.
+🛠️ **Make your changes** and ensure they adhere to the project's coding standards.
+🧪 **Test your changes thoroughly.**
+⬆️ **Commit your changes** with clear, descriptive messages.
+🚀 **Push your branch** to your fork and submit a pull request.
 
-#### Example Usage:
-```tsx
-// src/App.tsx
-import { useState, useEffect } from "react";
+## License
+This project is currently unlicensed.
 
-function App() {
-  const [message, setMessage] = useState("");
+## Author Info
+Feel free to connect with me!
 
-  useEffect(() => {
-    fetch("/api/handler")
-      .then((res) => res.json())
-      .then((data) => setMessage(data.message));
-  }, []);
-
-  return (
-    <div>
-      <p>{message}</p>
-    </div>
-  );
-}
-
-export default App;
-```
-
-#### Sample API Endpoint:
-```ts
-// api/handler.ts
-import { VercelRequest, VercelResponse } from "@vercel/node";
-
-const handler = (req: VercelRequest, res: VercelResponse) => {
-  res.status(200).json({ message: "Hello from Vercel!" });
-};
-
-export default handler;
-```
+- **Twitter**: [YourTwitterHandle]
+- **LinkedIn**: [YourLinkedInProfile]
 
 ---
+[![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
+[![License: Unlicensed](https://img.shields.io/badge/License-Unlicensed-blue.svg)](https://unlicense.org/)
+[![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen)](https://github.com/Charmingdc/Happr/actions)
 
-### ⚙️ Configuration
-Customize the `vite.config.ts` file as needed.
-
-#### Example Vite Configuration:
-```ts
-// vite.config.ts
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-
-export default defineConfig({
-  plugins: [react()],
-  server: {
-    proxy: {
-      '/api': {
-        target: 'http://localhost:3000',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '/api'),
-      },
-    },
-  },
-});
-```
-
----
-
-## ✨ Features
-
-✅ **React 19** – Build modern UI components with React.  
-✅ **TypeScript** – Strongly-typed JavaScript for better code quality.  
-✅ **Vite** – Lightning-fast development server and bundler.  
-✅ **Vercel** – Seamless cloud deployment with built-in serverless functions.  
-✅ **ESLint** – Keep your code clean and maintainable.  
-✅ **Example API Endpoint** – Ready-to-use serverless function.  
-
----
-
-## 💻 Technologies Used
-
-| Technology   | Description                                   | Link                                  |
-|-------------|---------------------------------------------|--------------------------------------|
-| React        | Library for building UI components          | [reactjs.org](https://reactjs.org/)   |
-| TypeScript   | Typed superset of JavaScript               | [typescriptlang.org](https://www.typescriptlang.org/) |
-| Vite         | Fast frontend build tool                   | [vitejs.dev](https://vitejs.dev/)     |
-| Vercel       | Cloud platform for static & serverless apps | [vercel.com](https://vercel.com/) |
-| ESLint       | JavaScript linter                          | [eslint.org](https://eslint.org/)     |
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! 🚀 Here’s how you can contribute:
-
-- 🐛 **Report Bugs** – Open issues with clear steps to reproduce.
-- 💡 **Suggest Features** – Propose new ideas for improvement.
-- 🛠️ **Submit Pull Requests** – Enhance the project with code contributions.
-
----
-
-## 📜 License
-This project is licensed under the [MIT License](LICENSE).
-
----
-
-## 🧑‍💻 Author Info
-
-- **Author**: Charmingdc  
-- **GitHub**: [Charmingdc](https://github.com/Charmingdc)
-- **X (Twitter)**: [Charmingdc01](https://github.com/Charmingdc)
-
----
-
-[![Built with Dokugen](https://img.shields.io/badge/Built%20with-Dokugen-brightgreen)](https://github.com/samueltuoyo15/Dokugen)
-
+[![Readme was generated by Dokugen](https://img.shields.io/badge/Readme%20was%20generated%20by-Dokugen-brightgreen)](https://www.npmjs.com/package/dokugen)
