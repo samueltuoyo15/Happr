@@ -23,6 +23,7 @@
     --sidebar-border: 215, 225, 240;
   }
 
+  /*
   @media (prefers-color-scheme: dark) {
     :root {
       --background: 20, 24, 40;
@@ -41,8 +42,8 @@
       --sidebar-background: 22, 26, 42;
       --sidebar-foreground: 210, 220, 235;
       --sidebar-border: 60, 65, 90;
-    }
-  }
+    } 
+  } */
 }
 
 @layer base {
@@ -55,6 +56,6 @@
   }
 
   body {
-    @apply w-screen font-nunito text-foreground;
+    @apply w-screen bg-background font-nunito text-foreground;
   }
 }
