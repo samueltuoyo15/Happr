@@ -4,7 +4,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        nunito: ["Nunito", "sans-serif"]
+        fredoka: ["Fredoka", "sans-serif"],
+        inter: ["Inter", "sans-serif"]
       },
       borderRadius: {
         lg: "var(--radius)",

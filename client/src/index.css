@@ -1,26 +1,32 @@
+/* Import Fredoka Font */
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap");
+
+/* Import Inter Font */
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 235, 240, 255;
-    --foreground: 50, 55, 65;
-    --card: 240, 242, 250;
-    --card-foreground: 45, 50, 60;
-    --primary: 59, 100, 246;
+    --background: 252, 248, 255;
+    --foreground: 50, 45, 70;
+    --card: 255, 252, 255;
+    --card-foreground: 60, 50, 80;
+    --primary: 157, 94, 255;
     --primary-foreground: 255, 255, 255;
-    --muted: 240, 245, 255;
-    --muted-foreground: 120, 130, 140;
-    --accent: 235, 240, 255;
-    --accent-foreground: 45, 50, 60;
-    --destructive: 220, 53, 69;
+    --muted: 245, 235, 255;
+    --muted-foreground: 130, 110, 160;
+    --accent: 255, 220, 235;
+    --accent-foreground: 65, 45, 65;
+    --destructive: 230, 70, 90;
     --destructive-foreground: 255, 255, 255;
-    --border: 200, 215, 225;
-    --radius: 0.5rem;
-    --sidebar-background: 240, 245, 255;
-    --sidebar-foreground: 60, 65, 70;
-    --sidebar-border: 215, 225, 240;
+    --border: 235, 220, 250;
+    --radius: 0.75rem;
+    --sidebar-background: 250, 245, 255;
+    --sidebar-foreground: 70, 55, 90;
+    --sidebar-border: 235, 220, 250;
   }
 
   /*
@@ -56,6 +62,12 @@
   }
 
   body {
-    @apply w-screen bg-background font-nunito text-foreground;
+    @apply w-screen bg-background font-inter text-foreground;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-fredoka font-bold;
   }
 }
