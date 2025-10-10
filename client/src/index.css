@@ -1,69 +1,60 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-  overflow: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
+@layer base {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    --background: 235, 240, 255;
+    --foreground: 50, 55, 65;
+    --card: 240, 242, 250;
+    --card-foreground: 45, 50, 60;
+    --primary: 59, 100, 246;
+    --primary-foreground: 255, 255, 255;
+    --muted: 240, 245, 255;
+    --muted-foreground: 120, 130, 140;
+    --accent: 235, 240, 255;
+    --accent-foreground: 45, 50, 60;
+    --destructive: 220, 53, 69;
+    --destructive-foreground: 255, 255, 255;
+    --border: 200, 215, 225;
+    --radius: 0.5rem;
+    --sidebar-background: 240, 245, 255;
+    --sidebar-foreground: 60, 65, 70;
+    --sidebar-border: 215, 225, 240;
   }
-  a:hover {
-    color: #747bff;
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background: 20, 24, 40;
+      --foreground: 210, 220, 235;
+      --card: 26, 30, 48;
+      --card-foreground: 210, 220, 235;
+      --primary: 65, 120, 240;
+      --primary-foreground: 240, 245, 255;
+      --muted: 28, 32, 48;
+      --muted-foreground: 150, 160, 180;
+      --accent: 30, 34, 52;
+      --accent-foreground: 210, 220, 235;
+      --destructive: 220, 53, 69;
+      --destructive-foreground: 255, 255, 255;
+      --border: 60, 65, 90;
+      --sidebar-background: 22, 26, 42;
+      --sidebar-foreground: 210, 220, 235;
+      --sidebar-border: 60, 65, 90;
+    }
   }
-  button {
-    background-color: #f9f9f9;
+}
+
+@layer base {
+  * {
+    @apply border-border p-0 m-0 outline-none;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply w-screen font-nunito text-foreground;
   }
 }

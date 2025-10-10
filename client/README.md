@@ -1,158 +1,73 @@
-# ✨ Vite + React + TypeScript + Vercel Template ✨
+# React + TypeScript + Vite
 
-A modern and streamlined template for building high-performance web applications using **React**, **TypeScript**, and **Vite**, with **Vercel serverless functions** seamlessly integrated. Ready for rapid development and deployment on **Vercel**! 🚀
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
----
+Currently, two official plugins are available:
 
-## 🛠️ Installation
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-Get started with these simple steps:
+## React Compiler
 
-### 1️⃣ Clone the Repository:
-```bash
-git clone git@github.com:Charmingdc/vite-react-ts-vercel-template.git
-cd vite-react-ts-vercel-template
-```
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-### 2️⃣ Install Dependencies:
-```bash
-npm install  # or yarn install, pnpm install
-```
+## Expanding the ESLint configuration
 
-### 3️⃣ Start the API Server:
-For local development, start the Vercel serverless function:
-```bash
-vercel dev --listen 3000
-```
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-### 4️⃣ Start the Frontend Development Server:
-```bash
-npm run dev  # or yarn dev, pnpm dev
-```
-This will launch the app at `http://localhost:5173`.
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
-Alternatively, you can use the Vercel CLI to handle both frontend and serverless functions (Note: **Memory-intensive!**):
-```bash
-vercel dev
-```
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
 
----
-
-## 💻 Usage
-
-This template is built for ease of use and extension. Below are key usage examples:
-
-### 📡 API Requests
-This template includes a **pre-configured** `/api` endpoint for Vercel serverless functions.
-
-#### Example Usage:
-```tsx
-// src/App.tsx
-import { useState, useEffect } from "react";
-
-function App() {
-  const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    fetch("/api/handler")
-      .then((res) => res.json())
-      .then((data) => setMessage(data.message));
-  }, []);
-
-  return (
-    <div>
-      <p>{message}</p>
-    </div>
-  );
-}
-
-export default App;
-```
-
-#### Sample API Endpoint:
-```ts
-// api/handler.ts
-import { VercelRequest, VercelResponse } from "@vercel/node";
-
-const handler = (req: VercelRequest, res: VercelResponse) => {
-  res.status(200).json({ message: "Hello from Vercel!" });
-};
-
-export default handler;
-```
-
----
-
-### ⚙️ Configuration
-Customize the `vite.config.ts` file as needed.
-
-#### Example Vite Configuration:
-```ts
-// vite.config.ts
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-
-export default defineConfig({
-  plugins: [react()],
-  server: {
-    proxy: {
-      '/api': {
-        target: 'http://localhost:3000',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '/api'),
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
       },
+      // other options...
     },
   },
-});
+])
 ```
 
----
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-## ✨ Features
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-✅ **React 19** – Build modern UI components with React.  
-✅ **TypeScript** – Strongly-typed JavaScript for better code quality.  
-✅ **Vite** – Lightning-fast development server and bundler.  
-✅ **Vercel** – Seamless cloud deployment with built-in serverless functions.  
-✅ **ESLint** – Keep your code clean and maintainable.  
-✅ **Example API Endpoint** – Ready-to-use serverless function.  
-
----
-
-## 💻 Technologies Used
-
-| Technology   | Description                                   | Link                                  |
-|-------------|---------------------------------------------|--------------------------------------|
-| React        | Library for building UI components          | [reactjs.org](https://reactjs.org/)   |
-| TypeScript   | Typed superset of JavaScript               | [typescriptlang.org](https://www.typescriptlang.org/) |
-| Vite         | Fast frontend build tool                   | [vitejs.dev](https://vitejs.dev/)     |
-| Vercel       | Cloud platform for static & serverless apps | [vercel.com](https://vercel.com/) |
-| ESLint       | JavaScript linter                          | [eslint.org](https://eslint.org/)     |
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! 🚀 Here’s how you can contribute:
-
-- 🐛 **Report Bugs** – Open issues with clear steps to reproduce.
-- 💡 **Suggest Features** – Propose new ideas for improvement.
-- 🛠️ **Submit Pull Requests** – Enhance the project with code contributions.
-
----
-
-## 📜 License
-This project is licensed under the [MIT License](LICENSE).
-
----
-
-## 🧑‍💻 Author Info
-
-- **Author**: Charmingdc  
-- **GitHub**: [Charmingdc](https://github.com/Charmingdc)
-- **X (Twitter)**: [Charmingdc01](https://github.com/Charmingdc)
-
----
-
-[![Built with Dokugen](https://img.shields.io/badge/Built%20with-Dokugen-brightgreen)](https://github.com/samueltuoyo15/Dokugen)
-
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
