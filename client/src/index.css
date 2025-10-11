@@ -10,7 +10,7 @@
 
 @layer base {
   :root {
-    --background: 252, 248, 255;
+    --background: 250, 246, 253;
     --foreground: 50, 45, 70;
     --card: 255, 252, 255;
     --card-foreground: 60, 50, 80;
@@ -23,7 +23,7 @@
     --destructive: 230, 70, 90;
     --destructive-foreground: 255, 255, 255;
     --border: 235, 220, 250;
-    --radius: 0.75rem;
+    --radius: 0.85rem;
     --sidebar-background: 250, 245, 255;
     --sidebar-foreground: 70, 55, 90;
     --sidebar-border: 235, 220, 250;

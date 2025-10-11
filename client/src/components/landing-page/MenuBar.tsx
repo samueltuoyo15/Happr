@@ -21,7 +21,7 @@ const MenuBar = ({ isMenuOpened, setIsMenuOpened }: PageProps) => {
   const navigate = useNavigate();
 
   return (
-    <div className="fixed top-[6rem] left-1/2 -translate-x-1/2 w-[90vw] bg-white/30 backdrop-blur-md flex flex-col justify-center gap-3 text-sm p-3 border border-sidebar-border rounded-[1rem]">
+    <div className="fixed top-[6rem] left-1/2 -translate-x-1/2 w-[90vw] bg-white/30 backdrop-blur-md flex flex-col justify-center gap-3 text-sm p-3 border border-sidebar-border rounded-[1rem] z-50">
       {navLinks.map((navLink, idx) => (
         <Link
           to={navLink.url}
