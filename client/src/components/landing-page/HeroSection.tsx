@@ -92,7 +92,7 @@ const HeroSection = () => {
             transition: { duration: 0.4 }
           }}
         >
-          <CtaButton onClick={() => navigate("/signin")} className="px-8 mt-4">
+          <CtaButton onClick={() => navigate("/signup")} className="px-8 mt-4">
             Get Started
           </CtaButton>
         </motion.div>

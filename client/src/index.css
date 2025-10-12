@@ -11,15 +11,16 @@
 @layer base {
   :root {
     --background: 250, 246, 253;
-    --foreground: 50, 45, 70;
+    --foreground: 45, 40, 65;
     --card: 255, 252, 255;
-    --card-foreground: 60, 50, 80;
+    --card-foreground: 55, 45, 85;
     --primary: 157, 94, 255;
     --primary-foreground: 255, 255, 255;
     --muted: 245, 235, 255;
-    --muted-foreground: 130, 110, 160;
-    --accent: 255, 220, 235;
-    --accent-foreground: 65, 45, 65;
+    --muted-foreground: 135, 110, 165;
+    --input: 240, 235, 255;
+    --input-foreground: 50, 40, 70;
+    --input-border: 220, 200, 250;
     --destructive: 230, 70, 90;
     --destructive-foreground: 255, 255, 255;
     --border: 235, 220, 250;
@@ -28,7 +29,6 @@
     --sidebar-foreground: 70, 55, 90;
     --sidebar-border: 235, 220, 250;
   }
-
   /*
   @media (prefers-color-scheme: dark) {
     :root {

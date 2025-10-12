@@ -27,6 +27,11 @@ export default {
           DEFAULT: "rgb(var(--muted))",
           foreground: "rgb(var(--muted-foreground))"
         },
+        input: {
+          DEFAULT: "rgb(var(--input))",
+          foreground: "rgb(var(--input-foreground))",
+          border: "rgb(var(--input-border))"
+        },
         destructive: {
           DEFAULT: "rgb(var(--destructive))",
           foreground: "rgb(var(--destructive-foreground))"

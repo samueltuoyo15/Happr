@@ -1,13 +1,9 @@
-type ButtonProps = {
-  onClick?: () => void;
-  className?: string;
-  children: React.ReactNode;
-};
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-const CtaButton = ({ onClick, className, children }: ButtonProps) => {
+const CtaButton = ({ className = "", children, ...props }: ButtonProps) => {
   return (
     <button
-      onClick={onClick}
+      {...props}
       className={`bg-primary text-primary-foreground px-6 py-3 border
       border-primary rounded-full
       transition-all duration-300 hover:bg-transparent hover:text-primary ${className}`}
@@ -16,4 +12,5 @@ const CtaButton = ({ onClick, className, children }: ButtonProps) => {
     </button>
   );
 };
+
 export default CtaButton;

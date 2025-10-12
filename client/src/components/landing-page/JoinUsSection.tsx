@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "motion/react";
+import { toast } from "sonner";
 import CtaButton from "./CtaButton";
 
 const fadeUpVariants = {
@@ -18,6 +19,14 @@ const scaleInVariants = {
 
 const JoinUsSection = () => {
   const [username, setUsername] = useState<string>("");
+
+  const handleSubmit = async () => {
+    if (!username || username.trim().length < 1) {
+      toast.error("Invalid username input");
+    }
+
+    setUsername("");
+  };
 
   return (
     <section
@@ -54,7 +63,14 @@ const JoinUsSection = () => {
           className="w-full flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-4 px-3 py-2 text-sm text-muted-foreground border border-border mt-4 rounded-lg md:rounded-full"
           variants={fadeUpVariants}
         >
-          <div className="flex items-center w-full sm:w-auto flex-grow overflow-hidden">
+          <form
+            onSubmit={async e => {
+              e.preventDefault();
+              await handleSubmit();
+            }}
+            id="join-us-form"
+            className="flex items-center w-full sm:w-auto flex-grow overflow-hidden"
+          >
             <p className="whitespace-nowrap text-xs sm:text-sm text-muted-foreground">
               https://happr.me/
             </p>
@@ -65,14 +81,18 @@ const JoinUsSection = () => {
               placeholder="username"
               className="flex-grow bg-transparent rounded-full px-2 py-1 focus:outline-none text-xs sm:text-sm"
             />
-          </div>
+          </form>
 
           <motion.div
             className="w-full sm:w-auto"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
           >
-            <CtaButton className="text-sm py-2 px-4 w-full whitespace-nowrap rounded-lg sm:w-auto md:rounded-full">
+            <CtaButton
+              type="submit"
+              form="join-us-form"
+              className="text-sm py-2 px-4 w-full whitespace-nowrap rounded-lg sm:w-auto md:rounded-full"
+            >
               Claim Page
             </CtaButton>
           </motion.div>
