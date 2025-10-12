@@ -1,4 +1,6 @@
-import { Link, useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "motion/react";
+import CtaButton from "./CtaButton";
+import { useNavigate } from "react-router-dom";
 import type { Dispatch, SetStateAction } from "react";
 
 type PageProps = {
@@ -14,34 +16,64 @@ type NavLinks = {
 const navLinks: NavLinks[] = [
   { text: "How It Works", url: "#how-it-works" },
   { text: "Creator Stories", url: "#creator-stories" },
+  { text: "Claim your page", url: "#join-us" },
   { text: "Pricing", url: "#pricing" }
 ];
+
+const dropIn = {
+  hidden: { opacity: 0, y: -10, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }
+  },
+  exit: {
+    opacity: 0,
+    y: -10,
+    scale: 0.97,
+    transition: { duration: 0.2, ease: "easeInOut" }
+  }
+};
 
 const MenuBar = ({ isMenuOpened, setIsMenuOpened }: PageProps) => {
   const navigate = useNavigate();
 
   return (
-    <div className="fixed top-[6rem] left-1/2 -translate-x-1/2 w-[90vw] bg-white/30 backdrop-blur-md flex flex-col justify-center gap-3 text-sm p-3 border border-sidebar-border rounded-[1rem] z-50">
-      {navLinks.map((navLink, idx) => (
-        <Link
-          to={navLink.url}
-          key={idx}
-          onClick={() => setIsMenuOpened(false)}
-          className="transition-all duration-300 hover:text-primary"
+    <AnimatePresence>
+      {isMenuOpened && (
+        <motion.div
+          variants={dropIn}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+          className="fixed top-[6rem] left-0 right-0 mx-auto w-[90vw] max-w-md bg-white/30 backdrop-blur-md flex flex-col justify-center gap-3 text-sm p-3 border border-sidebar-border rounded-[1rem] z-50 shadow-lg"
         >
-          {navLink.text}
-        </Link>
-      ))}
+          {navLinks.map((navLink, idx) => (
+            <a
+              href={navLink.url}
+              key={idx}
+              onClick={() => setIsMenuOpened(false)}
+              className="transition-all duration-300 hover:text-primary"
+            >
+              {navLink.text}
+            </a>
+          ))}
 
-      <hr />
+          <hr className="border-sidebar-border" />
 
-      <button
-        onClick={() => navigate("/signup")}
-        className="bg-primary text-primary-foreground p-4 rounded-full"
-      >
-        Get Started
-      </button>
-    </div>
+          <CtaButton
+            onClick={() => {
+              setIsMenuOpened(false);
+              navigate("/signup");
+            }}
+            className="w-full"
+          >
+            Get Started
+          </CtaButton>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 

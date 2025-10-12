@@ -5,7 +5,7 @@ export default {
     extend: {
       fontFamily: {
         fredoka: ["Fredoka", "sans-serif"],
-        inter: ["Inter", "sans-serif"]
+        openSans: ["Open Sans", "sans-serif"]
       },
       borderRadius: {
         lg: "var(--radius)",

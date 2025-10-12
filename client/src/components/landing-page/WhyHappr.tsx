@@ -1,3 +1,5 @@
+import { motion } from "motion/react";
+
 type Benefits = {
   emoji: string;
   title: string;
@@ -30,24 +32,47 @@ const benefits: Benefits[] = [
 const WhyHappr = () => {
   return (
     <section className="w-full flex flex-col gap-4">
-      <h2 className="text-primary text-3xl text-center">
+      <motion.h2
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="text-primary text-3xl text-center"
+      >
         Why Creators Love Happr
-      </h2>
+      </motion.h2>
 
       <div className="w-full flex flex-col items-center gap-3 bg-card text-card-foreground p-4 rounded-lg md:flex-row md:flex-wrap md:justify-center">
         {benefits.map((benefit, idx) => (
-          <div
+          <motion.div
             key={idx}
+            initial={{ opacity: 0, y: 40, scale: 0.95 }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              transition: {
+                delay: idx * 0.15,
+                duration: 0.6,
+                type: "spring",
+                stiffness: 120,
+                damping: 10
+              }
+            }}
+            viewport={{ once: true, amount: 0.2 }}
             className="flex flex-col gap-2 p-4 rounded-lg md:w-[48%]"
           >
-            <div className="w-16 h-16 bg-background flex items-center justify-center rounded-lg">
-              <h3> {benefit.emoji} </h3>
+            <div
+              className="w-16 h-16 bg-background flex items-center justify-center rounded-lg 
+              hover:animate-bounce transition-transform duration-300"
+            >
+              <h3>{benefit.emoji}</h3>
             </div>
 
-            <h3 className="text-xl"> {benefit.title} </h3>
+            <h3 className="text-xl">{benefit.title}</h3>
 
-            <p> {benefit.desc} </p>
-          </div>
+            <p>{benefit.desc}</p>
+          </motion.div>
         ))}
       </div>
     </section>

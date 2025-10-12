@@ -1,7 +1,8 @@
+import { motion } from "motion/react";
 import { Sparkle, Share2, Smile } from "lucide-react";
 
 type Steps = {
-  icon: React.ReactNode;
+  icon: React.ElementType;
   title: string;
   desc: string;
 };
@@ -24,23 +25,64 @@ const steps: Steps[] = [
   }
 ];
 
+// Animation Variants
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.2, duration: 0.6, ease: "easeOut" }
+  })
+};
+
+const lineGrow = {
+  hidden: { height: 0 },
+  visible: {
+    height: "100%",
+    transition: { duration: 1.2, ease: "easeInOut" }
+  }
+};
+
 const HowItWorks = () => {
   return (
-    <section id="how-it-works" className="w-full flex flex-col gap-6 py-10">
-      <h2 className="text-primary text-3xl font-semibold text-center">
+    <section
+      id="how-it-works"
+      className="w-full flex flex-col gap-8 py-12 scroll-mt-20"
+    >
+      <motion.h2
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="text-primary text-3xl font-semibold text-center"
+      >
         How Happr Works
-      </h2>
+      </motion.h2>
 
       <div className="relative w-full">
-        {/* Vertical line */}
-        <div className="absolute top-0 left-4 w-[1px] h-full bg-primary"></div>
+        {/* Animated Vertical Line */}
+        <motion.div
+          variants={lineGrow}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          className="absolute top-0 left-4 w-[1px] bg-primary"
+        ></motion.div>
 
         <div className="flex flex-col gap-12">
           {steps.map((step, idx) => {
             const Icon = step.icon;
 
             return (
-              <div key={idx} className="relative flex items-start gap-6">
+              <motion.div
+                key={idx}
+                custom={idx}
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                className="relative flex items-start gap-6"
+              >
                 {/* Dot */}
                 <div className="relative z-10">
                   <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold">
@@ -50,7 +92,10 @@ const HowItWorks = () => {
 
                 {/* Card */}
                 <div className="flex-1 bg-card text-card-foreground p-5 rounded-lg border border-border">
-                  <div className="w-16 h-16 flex items-center justify-center border border-border rounded-lg mb-2 transition-all duration-300 hover:border-[.2rem] hover:text-primary">
+                  <div
+                    className="w-16 h-16 flex items-center justify-center border border-border rounded-lg mb-3
+                    transition-all duration-300 hover:text-primary hover:scale-105"
+                  >
                     <Icon />
                   </div>
 
@@ -60,7 +105,7 @@ const HowItWorks = () => {
 
                   <p className="text-sm md:text-base opacity-80">{step.desc}</p>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>
