@@ -23,6 +23,7 @@ const JoinUsSection = () => {
   const handleSubmit = async () => {
     if (!username || username.trim().length < 1) {
       toast.error("Invalid username input");
+      return;
     }
 
     setUsername("");
