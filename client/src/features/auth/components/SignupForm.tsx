@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { toast } from "sonner";
+import { Link } from "react-router-dom";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import ChooseUsernameForm from "./ChooseUsernameForm";
@@ -13,11 +13,23 @@ const SignupForm = () => {
 
   return (
     <div className="w-full flex flex-col gap-2">
+      <h2 className="text-primary text-2xl">
+        {isUsernameChosen ? `Welcome, ${username}` : "Get started,"}
+      </h2>
+      <p>
+        {isUsernameChosen
+          ? "Complete your signup with one of the methods below"
+          : "Claim your Happr page."}
+      </p>
+
       {isUsernameChosen ? (
-        <form className="w-full flex flex-col gap-1 py-4">
+        <form
+          onSubmit={e => e.preventDefault()}
+          className="w-full flex flex-col gap-1 py-4"
+        >
           <GoogleAuthButton />
 
-          <p className="self-center font-fredoka font-bold text-primary text-md mt-6 mb-8 ml-1">
+          <p className="self-center font-fredoka font-bold text-primary mt-4 mb-6 ml-1">
             OR CONTINUE WITH
           </p>
 
@@ -31,7 +43,7 @@ const SignupForm = () => {
             value={email}
             onChange={e => setEmail(e.target.value)}
             placeholder="Enter a valid email address"
-            className="mb-4"
+            className="mb-3"
           />
 
           <label
@@ -61,6 +73,13 @@ const SignupForm = () => {
           setIsUsernameChosen={setIsUsernameChosen}
         />
       )}
+
+      <p className="sef-center text-center -mt-2">
+        Already on Haprr,
+        <Link to="/signin" className="text-primary">
+          {""} Signin here
+        </Link>
+      </p>
     </div>
   );
 };

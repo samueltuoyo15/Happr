@@ -19,7 +19,6 @@ const ChooseUsernameForm = ({
       return;
     }
 
-    setUsername("");
     setIsUsernameChosen(true);
   };
 

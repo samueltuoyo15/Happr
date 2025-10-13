@@ -9,6 +9,7 @@ const AuthLayout = lazy(() =>
   import("@/features/auth").then(module => ({ default: module.Layout }))
 );
 const SignupPage = lazy(() => import("@/pages/SignUp"));
+const SigninPage = lazy(() => import("@/pages/SignIn"));
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
           {/* Auth Routes */}
           <Route element={<AuthLayout />}>
             <Route path="/signup" element={<SignupPage />} />
+            <Route path="/signin" element={<SigninPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
