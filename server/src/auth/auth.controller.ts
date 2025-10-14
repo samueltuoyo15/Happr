@@ -1,10 +1,15 @@
-import { Controller, Post, Get, Body } from '@nestjs/common';
-import { SignupDto, SignInDto } from './auth.dto';
+import { Controller, Post, Get, Body, Param, Query } from '@nestjs/common';
+import { SignupDto, SignInDto, usernameAvailabilityDto } from './auth.dto';
 import { AuthService } from './auth.service';
 
 @Controller('auth')
 export class AuthController {
     constructor(private authService: AuthService) {}
+
+    @Get("username-availability")
+    checkusername(@Query() dto: usernameAvailabilityDto) {
+        return this.authService.checkUsernameAvailability(dto)
+    }
 
     @Post("register")
     signup(@Body() dto: SignupDto) {
