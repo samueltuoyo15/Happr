@@ -19,7 +19,7 @@ model User {
   auth_provider  String       @default("local") // "local" or "google"
   created_at     DateTime     @default(now())
   updated_at     DateTime     @updatedAt
-
+  is_verified    Boolean      @default(false)
   bank_account   BankAccount? @relation(fields: [bank_account_id], references: [id], onDelete: SetNull)
   bank_account_id String?     @unique // must be unique for one-to-one
 
