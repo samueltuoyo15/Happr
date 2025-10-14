@@ -14,3 +14,13 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id String @id @default(cuid())
+  email String @unique
+  password String? // i made this nullable for google users
+  username String @unique
+  auth_provider String @default("local") // or "google"
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
