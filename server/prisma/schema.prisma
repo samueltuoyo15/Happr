@@ -22,5 +22,6 @@ model User {
   auth_provider String @default("local") // or "google"
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
-}
 
+  @@index([username, email])
+}
