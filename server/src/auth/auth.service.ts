@@ -2,11 +2,21 @@ import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/
 import { PrismaService } from '../../prisma/prisma.service';
 import { JwtService } from "@nestjs/jwt";
 import * as argon2 from 'argon2'
-import { SignupDto, SignInDto } from './auth.dto';
+import { SignupDto, SignInDto, usernameAvailabilityDto } from './auth.dto';
 
 @Injectable()
 export class AuthService {
     constructor(private prisma: PrismaService, private jwt: JwtService) {}
+
+    async checkUsernameAvailability(dto: usernameAvailabilityDto){
+        const username = await this.prisma.findUnique({ where: { username: dto.username}})
+        
+        if(username) {
+            return { available: false, message: `"${dto.username}" is already taken`}
+        }
+
+        return { available: true, message: `${dto.username} is available`}
+    }
 
     async signup(dto: SignupDto) {
         const existingUser = await this.prisma.user.findFirst({ 

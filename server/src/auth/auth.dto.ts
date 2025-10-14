@@ -1,5 +1,13 @@
 import { IsEmail, MaxLength, IsNotEmpty, Matches, MinLength } from "class-validator"
 
+export class usernameAvailabilityDto {
+    @IsNotEmpty({ message: "Username is required"})
+    @MinLength(3, { message: "Username must be at least 3 characters long"})
+    @MaxLength(12, { message: "Username cannot exceed 12 characters"})
+    username: string 
+
+}
+
 export class SignupDto {
     @IsNotEmpty({ message: "Email is required"})
     @IsEmail({}, { message: "Please enter a valid email address"})
