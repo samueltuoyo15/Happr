@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
   output   = "../generated/prisma"
@@ -15,13 +9,46 @@ datasource db {
 }
 
 model User {
-  id String @id @default(cuid())
-  email String @unique
-  password String? // i made this nullable for google users
-  username String @unique
-  auth_provider String @default("local") // or "google"
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  id             String       @id @default(cuid())
+  email          String       @unique
+  password       String?      // nullable for Google users
+  username       String       @unique
+  bio            String?
+  avatar_url     String?
+  display_name   String?
+  auth_provider  String       @default("local") // "local" or "google"
+  created_at     DateTime     @default(now())
+  updated_at     DateTime     @updatedAt
+
+  bank_account   BankAccount? @relation(fields: [bank_account_id], references: [id], onDelete: SetNull)
+  bank_account_id String?     @unique // must be unique for one-to-one
+
+  donations      Donation[]   // donations received
+  supports       Donation[]   @relation("UserSupport") // donations given
 
   @@index([username, email])
+}
+
+model BankAccount {
+  id             String  @id @default(cuid())
+  bank_name      String
+  account_name   String
+  account_number String  @unique
+  user           User?   @relation
+}
+
+model Donation {
+  id            String   @id @default(cuid())
+  amount        Float
+  message       String?
+  name          String?
+  email         String?
+  is_guest      Boolean  @default(false)
+  created_at    DateTime @default(now())
+
+  creator       User     @relation(fields: [creator_id], references: [id], onDelete: Cascade)
+  creator_id    String
+
+  supporter     User?    @relation("UserSupport", fields: [supporter_id], references: [id], onDelete: SetNull)
+  supporter_id  String?
 }
