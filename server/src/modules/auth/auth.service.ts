@@ -6,6 +6,7 @@ import { ApiResponseDTO } from '../../dtos/api.response.dto';
 import { SignupDTO, SignInDTO, usernameAvailabilityDTO } from '../../dtos/auth.module.dto';
 import { Queue } from 'bullmq'
 import { InjectQueue } from '@nestjs/bullmq'
+import { decode } from 'punycode';
 
 @Injectable()
 export class AuthService {
@@ -47,7 +48,7 @@ export class AuthService {
             }
         })
 
-        const emailToken = this.generateMailToken(user.id, dto.email)
+        const emailToken = this.generateMailToken(user.id, dto.username, dto.email)
         await this.emailQueue.add("send-verification", {
             type: "verification",
             data: { email: user.email, emailToken }
@@ -55,6 +56,23 @@ export class AuthService {
         return { success: true, data: [], message: "Account created. Please verify your email"}
     }
 
+    async verifyEmail(token: string): Promise<ApiResponseDTO> {
+        try{
+            const decoded = this.jwt.verify(token, { secret: process.env.JWT_SECRET})
+            await this.prisma.user.update({
+                where: { email: decoded.email },
+                data: { is_verified: true }
+            })
+
+            await this.emailQueue.add("send-welcome", {
+                type: "welcome",
+                data: { email: decoded.email, username: decoded.username}
+            })
+            return { success: true, message: "Email verified successfully!", data: []}
+        } catch {
+            throw new BadRequestException({ success: false, data: [], message: "Invalid or expired token!"})
+        }
+    }
     async signin(dto: SignInDTO) {
         const user = await this.prisma.user.findUnique({ where: { email: dto.email }})
         if(!user) throw new UnauthorizedException({ success: false, data: [], message: "Invalid credentials" })
@@ -76,7 +94,7 @@ export class AuthService {
         return { refresh_token: token }
     }
 
-    private generateMailToken (_id: string, email: string){
+    private generateMailToken (_id: string, username: string, email: string){
         const payload = { _id, email }
         const token = this.jwt.sign(payload, { secret: process.env.JWT_SECRET, expiresIn: "1d"})
         return { email_token: token }
