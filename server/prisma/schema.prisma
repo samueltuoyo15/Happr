@@ -16,17 +16,30 @@ model User {
   bio            String?
   avatar_url     String?
   display_name   String?
+  phone_number   String?
   auth_provider  String       @default("local") // "local" or "google"
   created_at     DateTime     @default(now())
   updated_at     DateTime     @updatedAt
   is_verified    Boolean      @default(false)
   bank_account   BankAccount? @relation(fields: [bank_account_id], references: [id], onDelete: SetNull)
-  bank_account_id String?     @unique // must be unique for one-to-one
+  bank_account_id String?     @unique 
 
   donations      Donation[]   // donations received
   supports       Donation[]   @relation("UserSupport") // donations given
+  refresh_tokens RefreshToken[]
 
   @@index([username, email])
+}
+
+model RefreshToken {
+  id         String   @id @default(cuid())
+  token      String   @unique
+  user       User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user_id    String
+  created_at DateTime @default(now())
+  expires_at DateTime?
+
+  @@index([user_id])
 }
 
 model BankAccount {
@@ -52,3 +65,5 @@ model Donation {
   supporter     User?    @relation("UserSupport", fields: [supporter_id], references: [id], onDelete: SetNull)
   supporter_id  String?
 }
+
+
