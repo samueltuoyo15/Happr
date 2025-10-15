@@ -91,7 +91,7 @@ const HowItWorks = () => {
                 </div>
 
                 {/* Card */}
-                <div className="flex-1 bg-card text-card-foreground p-5 rounded-lg border border-border">
+                <div className="flex-1 bg-card text-card-foreground p-5 rounded-lg">
                   <div
                     className="w-16 h-16 flex items-center justify-center border border-border rounded-lg mb-3
                     transition-all duration-300 hover:text-primary hover:scale-105"

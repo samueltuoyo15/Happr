@@ -9,7 +9,7 @@ const Navbar = () => {
 
   return (
     <div className="w-screen flex flex-col iteme-center">
-      <nav className="fixed top-[1rem] left-1/2 -translate-x-1/2 w-[90vw] bg-white/30 backdrop-blur-md flex items-center justify-between p-3 border border-sidebar-border rounded-full z-50">
+      <nav className="fixed top-[1rem] left-1/2 -translate-x-1/2 w-[90vw] bg-white/30 backdrop-blur-md flex items-center justify-between p-3 border border-border rounded-full z-50">
         <div
           onClick={() => navigate("/")}
           className="h-auto flex items-center justify-evenly gap-2"
@@ -26,7 +26,7 @@ const Navbar = () => {
 
         <div
           onClick={() => setIsMenuOpened(!isMenuOpened)}
-          className="p-2 bg-sidebar rounded-lg"
+          className="p-2 bg-accent text-accent-foreground rounded-lg"
         >
           {isMenuOpened ? <X /> : <Menu />}
         </div>

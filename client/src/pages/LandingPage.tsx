@@ -1,15 +1,18 @@
-import Navbar from "@/components/landing-page/Navbar";
-import HeroSection from "@/components/landing-page/HeroSection";
-import WhyHappr from "@/components/landing-page/WhyHappr";
-import HowItWorks from "@/components/landing-page/HowItWorks";
-import CreatorStories from "@/components/landing-page/CreatorStories";
-import PricingSection from "@/components/landing-page/PricingSection";
-import JoinUsSection from "@/components/landing-page/JoinUsSection";
-import FooterSection from "@/components/landing-page/FooterSection";
+import Navbar from "@/features/landing/components/Navbar";
+import HeroSection from "@/features/landing/components/HeroSection";
+import WhyHappr from "@/features/landing/components/WhyHappr";
+import HowItWorks from "@/features/landing/components/HowItWorks";
+import CreatorStories from "@/features/landing/components/CreatorStories";
+import PricingSection from "@/features/landing/components/PricingSection";
+import JoinUsSection from "@/features/landing/components/JoinUsSection";
+import FooterSection from "@/features/landing/components/FooterSection";
 
 const LandingPage = () => {
   return (
-    <div className="w-screen flex flex-col items-center justify-center">
+    <div
+      data-page="landing"
+      className="w-screen flex flex-col items-center justify-center"
+    >
       <header>
         <Navbar />
       </header>

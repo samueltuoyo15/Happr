@@ -4,6 +4,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
+        montserrat: ["Montserrat", "sans-serif"],
+        workSans: ["Work Sans", "sans-serif"],
         fredoka: ["Fredoka", "sans-serif"],
         openSans: ["Open Sans", "sans-serif"]
       },
@@ -37,10 +39,9 @@ export default {
           foreground: "rgb(var(--destructive-foreground))"
         },
         border: "rgb(var(--border))",
-        sidebar: {
-          DEFAULT: "rgb(var(--sidebar-background))",
-          foreground: "rgb(var(--sidebar-foreground))",
-          border: "rgb(var(--sidebar-border))"
+        accent: {
+          DEFAULT: "rgb(var(--accent))",
+          foreground: "rgb(var(--accent-foreground))"
         }
       }
     }
