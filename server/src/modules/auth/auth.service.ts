@@ -2,7 +2,8 @@ import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/
 import { PrismaService } from '../../../prisma/prisma.service';
 import { JwtService } from "@nestjs/jwt";
 import * as argon2 from 'argon2'
-import { SignupDto, SignInDto, usernameAvailabilityDto } from '../../dtos/auth.module.dto';
+import { ApiResponseDTO } from '../../dtos/api.response.dto';
+import { SignupDTO, SignInDTO, usernameAvailabilityDTO } from '../../dtos/auth.module.dto';
 import { Queue } from 'bullmq'
 import { InjectQueue } from '@nestjs/bullmq'
 
@@ -14,17 +15,17 @@ export class AuthService {
         @InjectQueue("email-queue") private emailQueue: Queue
     ){}
 
-    async checkUsernameAvailability(dto: usernameAvailabilityDto){
+    async checkUsernameAvailability(dto: usernameAvailabilityDTO): Promise<ApiResponseDTO>{
         const username = await this.prisma.findUnique({ where: { username: dto.username}})
         
         if(username) {
-            return { available: false, message: `"${dto.username}" is already taken`}
+            throw new BadRequestException({ success: false, data: [], message: `"${dto.username}" is already taken`})
         }
 
-        return { available: true, message: `${dto.username} is available`}
+        return { success: true, data: [], message: `${dto.username} is available`}
     }
 
-    async signup(dto: SignupDto) {
+    async signup(dto: SignupDTO): Promise<ApiResponseDTO>{
         const existingUser = await this.prisma.user.findFirst({ 
             where: {
                 OR: [
@@ -34,7 +35,7 @@ export class AuthService {
             }
         })
 
-        if(existingUser) throw new BadRequestException("Account already exists")
+        if(existingUser) throw new BadRequestException({ status: true, data: [], message: "Account already exists" })
 
         const hashedPassword = await argon2.hash(dto.password)
         const user = await this.prisma.user.create({
@@ -51,15 +52,15 @@ export class AuthService {
             type: "verification",
             data: { email: user.email, emailToken }
         })
-        return { message: "Account created. Please verify your email"}
+        return { success: true, data: [], message: "Account created. Please verify your email"}
     }
 
-    async signin(dto: SignInDto) {
+    async signin(dto: SignInDTO) {
         const user = await this.prisma.user.findUnique({ where: { email: dto.email }})
-        if(!user) throw new UnauthorizedException("Invalid credentials")
+        if(!user) throw new UnauthorizedException({ success: false, data: [], message: "Invalid credentials" })
 
         const validPassword = await argon2.verify(user.password, dto.password)
-        if(!validPassword) throw new UnauthorizedException("Invalid credentials")
+        if(!validPassword) throw new UnauthorizedException({ success: false, data: [], message: "Invalid credentials" })
         return this.generateAccessToken (user.id, user.email)
     }
 

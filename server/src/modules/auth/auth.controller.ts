@@ -1,5 +1,5 @@
-import { Controller, Post, Get, Body, Param, Query } from '@nestjs/common';
-import { SignupDto, SignInDto, usernameAvailabilityDto } from '../../dtos/auth.module.dto';
+import { Controller, Post, Get, Body, Param, Query, HttpCode } from '@nestjs/common';
+import { SignupDTO, SignInDTO, usernameAvailabilityDTO} from '../../dtos/auth.module.dto';
 import { AuthService } from './auth.service';
 
 @Controller('auth')
@@ -7,17 +7,20 @@ export class AuthController {
     constructor(private authService: AuthService) {}
 
     @Get("username-availability")
-    checkusername(@Query() dto: usernameAvailabilityDto) {
+    @HttpCode(200)
+    checkusername(@Query() dto: usernameAvailabilityDTO) {
         return this.authService.checkUsernameAvailability(dto)
     }
 
     @Post("register")
-    signup(@Body() dto: SignupDto) {
+    @HttpCode(201)
+    signup(@Body() dto: SignupDTO) {
         return this.authService.signup(dto)
     }
 
-    @Get("signin")
-    signin(@Body() dto: SignInDto) {
+    @Post("signin")
+    @HttpCode(200)
+    signin(@Body() dto: SignInDTO) {
         return this.authService.signin(dto)
     }
 }
