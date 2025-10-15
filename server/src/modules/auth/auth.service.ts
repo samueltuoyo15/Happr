@@ -1,12 +1,18 @@
 import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
-import { PrismaService } from '../prisma/prisma.service';
+import { PrismaService } from '../../../prisma/prisma.service';
 import { JwtService } from "@nestjs/jwt";
 import * as argon2 from 'argon2'
-import { SignupDto, SignInDto, usernameAvailabilityDto } from './auth.dto';
+import { SignupDto, SignInDto, usernameAvailabilityDto } from '../../dtos/auth.module.dto';
+import { Queue } from 'bullmq'
+import { InjectQueue } from '@nestjs/bullmq'
 
 @Injectable()
 export class AuthService {
-    constructor(private prisma: PrismaService, private jwt: JwtService) {}
+    constructor(
+        private prisma: PrismaService, 
+        private jwt: JwtService,
+        @InjectQueue("email-queue") private emailQueue: Queue
+    ){}
 
     async checkUsernameAvailability(dto: usernameAvailabilityDto){
         const username = await this.prisma.findUnique({ where: { username: dto.username}})
@@ -39,7 +45,13 @@ export class AuthService {
                 auth_provider: "local",
             }
         })
-        return this.signToken(user.id, dto.email)
+
+        const emailToken = this.generateMailToken(user.id, dto.email)
+        await this.emailQueue.add("send-verification", {
+            type: "verification",
+            data: { email: user.email, emailToken }
+        })
+        return { message: "Account created. Please verify your email"}
     }
 
     async signin(dto: SignInDto) {
@@ -48,12 +60,24 @@ export class AuthService {
 
         const validPassword = await argon2.verify(user.password, dto.password)
         if(!validPassword) throw new UnauthorizedException("Invalid credentials")
-        return this.signToken(user.id, user.email)
+        return this.generateAccessToken (user.id, user.email)
     }
 
-    private signToken(user_id: string, email: string){
-        const payload = { user_id, email }
+    private generateAccessToken (_id: string, email: string){
+        const payload = { _id, email }
         const token = this.jwt.sign(payload, { secret: process.env.JWT_SECRET, expiresIn: "1h"})
         return { access_token: token }
+    }
+
+    private generateRefreshToken (_id: string, email: string){
+        const payload = { _id, email }
+        const token = this.jwt.sign(payload, { secret: process.env.JWT_SECRET, expiresIn: "7d"})
+        return { refresh_token: token }
+    }
+
+    private generateMailToken (_id: string, email: string){
+        const payload = { _id, email }
+        const token = this.jwt.sign(payload, { secret: process.env.JWT_SECRET, expiresIn: "1d"})
+        return { email_token: token }
     }
 }
