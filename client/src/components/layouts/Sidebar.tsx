@@ -65,7 +65,8 @@ const Sidebar = ({
 
       <button
         onClick={() => setIsMenuOpened(false)}
-        className="self-start flex items-center gap-3 text-destructive text-md"
+        className="self-start flex items-center gap-3
+        text-destructive-foreground text-md"
       >
         <LogOut /> Signout
       </button>

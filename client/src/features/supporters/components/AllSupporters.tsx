@@ -3,7 +3,7 @@ import ErrorBox from "@/components/ui/ErrorBox";
 import SupportersSkeletonLoader from "./SupportersSkeletonLoader";
 import DisplaySupporters from "./DisplaySupporters";
 import NoSupporters from "./NoSupporters";
-import getSupporters from "../api/getSupporters";
+import getSupporters from "../utils/getSupporters";
 import type { Supporter } from "../types";
 
 const AllSupporters = () => {

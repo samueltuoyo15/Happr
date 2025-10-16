@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import ChooseUsernameForm from "./ChooseUsernameForm";
 import GoogleAuthButton from "./GoogleAuthButton";
 
 const SignupForm = () => {
+  const navigate = useNavigate();
   const [isUsernameChosen, setIsUsernameChosen] = useState<boolean>(false);
   const [username, setUsername] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -24,7 +25,10 @@ const SignupForm = () => {
 
       {isUsernameChosen ? (
         <form
-          onSubmit={e => e.preventDefault()}
+          onSubmit={e => {
+            e.preventDefault();
+            navigate("/complete-setup", { replace: true });
+          }}
           className="w-full flex flex-col gap-1 py-4"
         >
           <GoogleAuthButton />

@@ -19,7 +19,7 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
   const variantClasses = variants[variant] || variants.primary;
   const defaultClasses =
-    "px-5 py-3 rounded-md font-medium disabled:opacity-[60%] transition-all duration-300";
+    "px-5 py-3 rounded-full font-medium disabled:opacity-[60%] transition-all duration-300";
 
   return (
     <button
