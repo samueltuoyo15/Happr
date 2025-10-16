@@ -1,9 +1,10 @@
 # Happr API Backend ✨
 
+<img src="./public/docs.png" />
+
 ## Overview
 This is the backend API for Happr, a platform enabling creators to receive "Smiles" (donations) from their fans. Built with **NestJS** and **TypeScript**, it leverages **Prisma ORM** for database interactions, **PostgreSQL** for data persistence, **BullMQ** for robust background job processing, and **JWT** for secure authentication.
 
-<img scr="./public/docs.png" />
 
 ## Features
 -   **User Authentication**: Secure registration, login, and email verification processes.
