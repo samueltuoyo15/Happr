@@ -13,7 +13,7 @@ const useCopyToClipboard = () => {
       if (err instanceof Error) {
         throw err;
       } else {
-        throw new Erro("Error copying to clipboard");
+        throw new Error("Error copying to clipboard");
       }
     }
   };

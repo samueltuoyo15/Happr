@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
 const stories: { content: string; writer: string }[] = [
   {

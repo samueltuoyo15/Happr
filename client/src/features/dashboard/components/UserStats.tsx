@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { formatNaira } from "@/utils/formatters";
 

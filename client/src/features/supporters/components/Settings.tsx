@@ -55,7 +55,7 @@ const Settings = () => {
         <Input
           type="number"
           value={smilePrice}
-          onChange={e => setSmilePrice(e.target.value)}
+          onChange={e => setSmilePrice(Number(e.target.value))}
           className="mt-3 mb-1"
         />
         <Button className="w-fit"> Update Price </Button>

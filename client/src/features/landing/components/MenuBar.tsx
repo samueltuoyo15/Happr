@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence } from "framer-motion";
 import CtaButton from "./CtaButton";
 import { useNavigate } from "react-router-dom";
 import type { Dispatch, SetStateAction } from "react";

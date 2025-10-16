@@ -1,6 +1,12 @@
 import { axios } from "@/lib";
+import type { Supporter } from "../types";
 
-const getSupporters = async (creatorId: string, limit?: number) => {
+const getSupporters = async (
+  creatorId: string,
+  limit?: number
+): Promise<Supporter[]> => {
+  console.log(creatorId);
+
   try {
     const res = await axios.get("/supporters.json");
     if (limit) {

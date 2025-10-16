@@ -1,7 +1,7 @@
 import { formatNaira, timeAgo } from "@/utils/formatters";
-import type { Supporters } from "../types";
+import type { Supporter } from "../types";
 
-const DisplaySupporters = ({ supporters }: { supporters: Supporters[] }) => {
+const DisplaySupporters = ({ supporters }: { supporters: Supporter[] }) => {
   return (
     <table aria-label="supporters table" className="w-full mb-0">
       <tbody>

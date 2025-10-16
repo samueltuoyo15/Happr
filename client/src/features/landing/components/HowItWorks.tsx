@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { Sparkle, Share2, Smile } from "lucide-react";
 
 type Steps = {

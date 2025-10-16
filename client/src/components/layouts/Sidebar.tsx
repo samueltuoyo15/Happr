@@ -1,5 +1,5 @@
 import type { Dispatch, SetStateAction } from "react";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 import {
   X,
@@ -32,10 +32,7 @@ const Sidebar = ({
     <motion.div
       initial={{ y: -10, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      className={`
-        ${isMobile ? "fixed inset-0 w-full h-full z-50" : "w-full h-full"}
-        flex flex-col gap-5 bg-card text-card-foreground p-6 border border-border
-      `}
+      className="fixed inset-0 w-full h-full z-50 sm:static sm:w-full sm:h-full sm:z-auto flex flex-col gap-5 bg-card text-card-foreground p-6 border border-border"
     >
       {isMobile && (
         <button

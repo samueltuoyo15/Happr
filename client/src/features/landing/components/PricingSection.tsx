@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { Smile, Zap, HandCoins, ArrowRight, ArrowDown } from "lucide-react";
 
 const cardVariants = {
