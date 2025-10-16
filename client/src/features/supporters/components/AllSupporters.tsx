@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import ErrorBox from "@/components/ui/ErrorBox";
 import SupportersSkeletonLoader from "./SupportersSkeletonLoader";
 import DisplaySupporters from "./DisplaySupporters";
 import NoSupporters from "./NoSupporters";
@@ -19,29 +20,26 @@ const AllSupporters = () => {
     enabled: !!creatorId
   });
 
-  if (isLoading) return <SupportersSkeletonLoader />;
-
-  if (isError)
-    return (
-      <div className="w-full flex flex-col items-center gap-2 p-4 bg-red-100 text-red-700 text-center rounded-md">
-        <h3 className="text-2xl">Error loading supporters</h3>
-        <p>
-          {error instanceof Error
-            ? error.message
-            : "Something went wrong. Please try again."}
-        </p>
-      </div>
-    );
-
   return (
     <section
-      aria-labelledBy="supporters section"
-      className="relative w-full flex flex-col gap-4 p-4 border border-border rounded-xl"
+      aria-labelledby="supporters section"
+      className="relative w-full flex flex-col gap-4"
     >
       <h2 className="text-2xl">Your Supporters</h2>
 
-      <div className="w-full block hide-scrollbar overflow-x-auto overflow-y-visible">
-        {supporters.length === 0 ? (
+      <div className="w-full block p-2 border border-border rounded-xl hide-scrollbar overflow-x-auto overflow-y-visible">
+        {isLoading ? (
+          <SupportersSkeletonLoader />
+        ) : isError ? (
+          <ErrorBox
+            title="Error loading supporters"
+            message={`${
+              error instanceof Error
+                ? error.message
+                : "Soemthing went wrong. Please try again"
+            }`}
+          />
+        ) : supporters.length === 0 ? (
           <NoSupporters />
         ) : (
           <DisplaySupporters supporters={supporters} />

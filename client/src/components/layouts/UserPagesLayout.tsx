@@ -16,7 +16,7 @@ const Layout = () => {
         </aside>
 
         {/* Main content */}
-        <div className="w-full overflow-y-auto px-[5%] py-4 md:px-0 md:pt-6">
+        <div className="w-full overflow-y-auto px-[5%] py-4 md:px-[2%] md:pt-6">
           <Outlet />
         </div>
       </main>

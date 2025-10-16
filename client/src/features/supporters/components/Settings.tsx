@@ -11,13 +11,13 @@ const Settings = () => {
 
   return (
     <section
-      aria-labelledBy="settings"
-      className="relative w-full flex flex-col gap-8 p-4 border border-border rounded-xl"
+      aria-labelledby="settings"
+      className="relative w-full flex flex-col gap-4"
     >
-      <h2 className="text-3xl"> Settings </h2>
+      <h2 className="text-2xl"> Settings </h2>
 
       <div className="w-full flex flex-col gap-1 p-4 border rounded-md">
-        <h3 className="text-xl"> Thank You Message </h3>
+        <h3 className="text-lg"> Thank You Message </h3>
         <p className="text-xs text-muted-foreground">
           Edit the thank you message that shows up after a supporter tips you.
         </p>
@@ -32,7 +32,7 @@ const Settings = () => {
       </div>
 
       <div className="w-full flex flex-col gap-1 p-4 border rounded-md">
-        <h3 className="text-xl"> Button Wording </h3>
+        <h3 className="text-lg"> Button Wording </h3>
         <p className="text-xs text-muted-foreground">
           Edit the message on your support page.
         </p>
@@ -47,7 +47,7 @@ const Settings = () => {
       </div>
 
       <div className="w-full flex flex-col gap-1 p-4 border rounded-md">
-        <h3 className="text-xl"> Smile Price </h3>
+        <h3 className="text-lg"> Smile Price </h3>
         <p className="text-xs text-muted-foreground">
           Edit the price per smiles.
         </p>
