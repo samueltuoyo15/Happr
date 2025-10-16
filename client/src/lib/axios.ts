@@ -1,5 +1,4 @@
 import axios from "axios";
-import type { AxiosResponse } from "axios";
 
 const baseURL = import.meta.env.VITE_API_URL;
 
@@ -15,6 +14,7 @@ const axiosFacade = axios.create({
 //   return config;
 // });
 
+// Typed response interceptor
 axiosFacade.interceptors.response.use(
   <T>(response: { data: T }): T => response.data,
   error => {
