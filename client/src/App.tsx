@@ -16,6 +16,7 @@ const UserPagesLayout = lazy(
   () => import("@/components/layouts/UserPagesLayout")
 );
 const Dashboard = lazy(() => import("@/pages/Dashboard"));
+const SupportersPage = lazy(() => import("@/pages/Supporters"));
 
 const App = () => {
   return (
@@ -33,6 +34,7 @@ const App = () => {
           {/* User Routes */}
           <Route element={<UserPagesLayout />}>
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/supporters" element={<SupportersPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

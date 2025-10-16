@@ -76,7 +76,10 @@
 
   [data-page="userPages"] h1,
   [data-page="userPages"] h2,
-  [data-page="userPages"] h3 {
+  [data-page="userPages"] h3,
+  [data-page="authPage"] h1,
+  [data-page="authPage"] h2,
+  [data-page="authPage"] h3 {
     @apply font-montserrat font-extrabold;
   }
 
@@ -85,4 +88,14 @@
   [data-page="landing"] h3 {
     @apply font-fredoka font-bold;
   }
+}
+
+/* Hide scrollbars for all browsers */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
 }

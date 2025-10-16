@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "motion/react";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import { formatNaira } from "@/utils/formatters";
 
 const durationFilters: string[] = ["all-time", "30-days", "90-days"];
 
@@ -17,7 +18,7 @@ const UserStats = () => {
 
         <button
           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-          className="flex items-center gap-2 bg-card text-card-foreground capitalize py-2 px-3 rounded-md"
+          className="flex items-center gap-2 bg-card text-card-foreground capitalize py-2 px-3 rounded-sm"
         >
           {statsDuration.split("-").join(" ")}
           {isDropdownOpen ? <ChevronUp /> : <ChevronDown />}
@@ -27,12 +28,12 @@ const UserStats = () => {
       <div className="w-full flex flex-wrap gap-5">
         <div className="py-2 px-3 border border-border rounded-md">
           <p> Earnings </p>
-          <h3 className="text-2xl mt-1"> # 320, 000 </h3>
+          <h3 className="text-2xl mt-1"> {formatNaira(19100)}</h3>
         </div>
 
         <div className="py-2 px-3 border border-border rounded-md">
           <p> Supporters </p>
-          <h3 className="text-2xl mt-1"> 250 </h3>
+          <h3 className="text-2xl mt-1"> 10 </h3>
         </div>
       </div>
 
@@ -44,6 +45,7 @@ const UserStats = () => {
         >
           {durationFilters.map((duration, idx) => (
             <div
+              key={idx}
               onClick={() => {
                 setStatsDuration(duration);
                 setIsDropdownOpen(false);

@@ -2,7 +2,7 @@ import { toast } from "sonner";
 import useCopyToClipboard from "@/hooks/useCopyToClipboard";
 
 const GreetUser = () => {
-  const { copy, copied, error: copyError } = useCopyToClipboard();
+  const { copy, copied } = useCopyToClipboard();
 
   const handleCopy = async (text: string) => {
     try {

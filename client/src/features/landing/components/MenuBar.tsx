@@ -47,18 +47,20 @@ const MenuBar = ({ isMenuOpened, setIsMenuOpened }: PageProps) => {
           initial="hidden"
           animate="visible"
           exit="exit"
-          className="fixed top-[6rem] left-0 right-0 mx-auto w-[90vw] max-w-md bg-white/30 backdrop-blur-md flex flex-col justify-center gap-3 text-sm p-3 border border-sidebar-border rounded-[1rem] z-50 shadow-lg"
+          className="fixed top-[6rem] left-0 right-0 mx-auto w-[90vw] bg-white/30 backdrop-blur-md flex flex-col justify-center gap-3 text-sm p-3 border border-sidebar-border rounded-[1rem] z-50 shadow-lg"
         >
-          {navLinks.map((navLink, idx) => (
-            <a
-              href={navLink.url}
-              key={idx}
-              onClick={() => setIsMenuOpened(false)}
-              className="transition-all duration-300 hover:text-primary"
-            >
-              {navLink.text}
-            </a>
-          ))}
+          <div className="w-full flex flex-col gap-3 md:flex-row md:justify-evenly">
+            {navLinks.map((navLink, idx) => (
+              <a
+                href={navLink.url}
+                key={idx}
+                onClick={() => setIsMenuOpened(false)}
+                className="transition-all duration-300 hover:text-primary"
+              >
+                {navLink.text}
+              </a>
+            ))}
+          </div>
 
           <hr className="border-sidebar-border" />
 
