@@ -13,7 +13,8 @@ export class MailProcessor extends WorkerHost {
     async process(job: Job) {
         const { type, data } = job.data 
 
-        switch(type){
+        try {
+           switch(type){
             case "verification":
              await this.mailService.sendVerificationEmail(data.email, data.username, data.token)
              break 
@@ -24,6 +25,11 @@ export class MailProcessor extends WorkerHost {
             
              default: 
              this.logger.warn(`Unknown email job type: ${type}`)
+         }
+
+         this.logger.log(`Email job processed: ${type} for ${data.email}`);
+      } catch(error) {
+         this.logger.error(`Email job failed: ${type} for ${data.email}`, error.stack || error.message);
         }
     }
 }

@@ -7,10 +7,13 @@ import { MailProcessor } from './mail.processor';
   imports: [
     BullModule.registerQueue({
       name: "email-queue",
-      connection: {
-        host: "localhost",
-        port: 6379,
-      }
+      connection: { url: process.env.REDIS_URL },
+      defaultJobOptions: {
+        attempts: 5,
+        backoff: { type: 'exponential', delay: 5000 },
+        removeOnComplete: true,
+        removeOnFail: false,
+      },
     })
   ],
   providers: [MailService, MailProcessor],
