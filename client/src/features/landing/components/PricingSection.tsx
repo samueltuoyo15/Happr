@@ -15,8 +15,7 @@ const PricingSection = () => {
   return (
     <section
       id="pricing"
-      className="w-full py-16 flex flex-col items-center
-    scroll-mt-16"
+      className="w-full py-16 flex flex-col items-center scroll-mt-16"
     >
       <motion.h2
         className="text-tbh text-primary text-3xl font-semibold text-center mb-10"
@@ -29,7 +28,7 @@ const PricingSection = () => {
       </motion.h2>
 
       <motion.div
-        className="w-full max-w-4xl bg-card border border-border rounded-3xl p-8"
+        className="w-full max-w-4xl bg-card rounded-3xl p-8"
         initial={{ opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}

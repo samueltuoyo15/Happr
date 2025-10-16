@@ -5,7 +5,7 @@ type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
 const Input: React.FC<InputProps> = ({ className = "", ...props }) => {
   return (
     <input
-      className={`h-14 w-full flex items-center py-3 px-5 text-sm bg-input
+      className={`h-14 w-full flex items-center p-3 text-sm bg-input
       text-input-foreground border border-input rounded-lg ${className}`}
       {...props}
     />

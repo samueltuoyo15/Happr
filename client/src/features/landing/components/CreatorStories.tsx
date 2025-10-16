@@ -55,8 +55,7 @@ const CreatorStories = () => {
               transition: { type: "spring", stiffness: 200, damping: 10 }
             }}
             viewport={{ once: true, amount: 0.3 }}
-            className="w-full flex flex-col gap-3 bg-card text-card-foreground
-            p-4 border border-border rounded-lg md:w-[19rem] origin-top-left"
+            className="w-full flex flex-col gap-3 bg-card text-card-foreground p-4 rounded-lg md:w-[19rem] origin-top-left"
           >
             <div className="h-8 w-8 flex items-center justify-center border border-border rounded-full">
               📌

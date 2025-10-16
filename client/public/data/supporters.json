@@ -1,0 +1,114 @@
+{
+  "supporters": [
+    {
+      "id": "sup_010",
+      "creatorId": "creator_001",
+      "info": { "name": "Chioma Eze", "xHandle": "chioma_eze" },
+      "isAnonymous": false,
+      "smileCount": 5,
+      "smilePrice": 400,
+      "amount": 2000,
+      "message": "Pushing boundaries every day 💪",
+      "createdAt": "2025-10-14T12:00:00Z"
+    },
+    {
+      "id": "sup_008",
+      "creatorId": "creator_001",
+      "info": { "name": "Emeka Nnaji", "xHandle": "emeka_nnaji" },
+      "isAnonymous": false,
+      "smileCount": 6,
+      "smilePrice": 300,
+      "amount": 1800,
+      "message": "You’re a true inspiration ✨",
+      "createdAt": "2025-10-14T11:30:00Z"
+    },
+    {
+      "id": "sup_007",
+      "creatorId": "creator_001",
+      "info": { "name": "Amara Obi", "xHandle": "amara_obi" },
+      "isAnonymous": false,
+      "smileCount": 7,
+      "smilePrice": 200,
+      "amount": 1400,
+      "message": "Loving your updates! 💯",
+      "createdAt": "2025-10-14T11:15:00Z"
+    },
+    {
+      "id": "sup_006",
+      "creatorId": "creator_001",
+      "info": { "name": "Tosin Ade", "xHandle": "tosin_ade" },
+      "isAnonymous": false,
+      "smileCount": 4,
+      "smilePrice": 150,
+      "amount": 600,
+      "message": "Keep up the great work!",
+      "createdAt": "2025-10-14T11:00:00Z"
+    },
+    {
+      "id": "sup_003",
+      "creatorId": "creator_001",
+      "info": { "name": "Chuka", "xHandle": "chuka_dev" },
+      "isAnonymous": false,
+      "smileCount": 10,
+      "smilePrice": 500,
+      "amount": 5000,
+      "message": "Big inspiration to many, keep shining 🌟",
+      "createdAt": "2025-10-14T10:15:00Z"
+    },
+    {
+      "id": "sup_002",
+      "creatorId": "creator_001",
+      "info": { "name": "Anonymous User", "xHandle": null },
+      "isAnonymous": true,
+      "smileCount": 5,
+      "smilePrice": 250,
+      "amount": 1250,
+      "message": "Just a low-key fan of yours",
+      "createdAt": "2025-10-14T09:10:00Z"
+    },
+    {
+      "id": "sup_001",
+      "creatorId": "creator_001",
+      "info": { "name": "Ada", "xHandle": "ada_designs" },
+      "isAnonymous": false,
+      "smileCount": 3,
+      "smilePrice": 100,
+      "amount": 300,
+      "message": "Your art is amazing 🔥 Keep going!",
+      "createdAt": "2025-10-14T08:05:00Z"
+    },
+    {
+      "id": "sup_004",
+      "creatorId": "creator_001",
+      "info": { "name": "Zainab", "xHandle": null },
+      "isAnonymous": false,
+      "smileCount": 2,
+      "smilePrice": 1000,
+      "amount": 2000,
+      "message": "You deserve all the smiles 💜",
+      "createdAt": "2025-10-13T11:30:00Z"
+    },
+    {
+      "id": "sup_005",
+      "creatorId": "creator_001",
+      "info": { "name": "Kenny", "xHandle": "kenny_codes" },
+      "isAnonymous": false,
+      "smileCount": 8,
+      "smilePrice": 500,
+      "amount": 4000,
+      "message": "Let’s make more magic! 🚀",
+      "createdAt": "2025-10-12T12:00:00Z"
+    },
+    {
+      "id": "sup_009",
+      "creatorId": "creator_001",
+      "info": { "name": "Femi Okafor", "xHandle": "femi_okafor" },
+      "isAnonymous": false,
+      "smileCount": 3,
+      "smilePrice": 250,
+      "amount": 750,
+      "message": "Amazing work, keep going!",
+      "createdAt": "2025-10-12T10:30:00Z"
+    }
+  ]
+}

@@ -11,6 +11,13 @@ const AuthLayout = lazy(() =>
 const SignupPage = lazy(() => import("@/pages/SignUp"));
 const SigninPage = lazy(() => import("@/pages/SignIn"));
 
+// User Pages
+const UserPagesLayout = lazy(
+  () => import("@/components/layouts/UserPagesLayout")
+);
+const Dashboard = lazy(() => import("@/pages/Dashboard"));
+const SupportersPage = lazy(() => import("@/pages/Supporters"));
+
 const App = () => {
   return (
     <>
@@ -22,6 +29,12 @@ const App = () => {
           <Route element={<AuthLayout />}>
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/signin" element={<SigninPage />} />
+          </Route>
+
+          {/* User Routes */}
+          <Route element={<UserPagesLayout />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/supporters" element={<SupportersPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
