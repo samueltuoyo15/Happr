@@ -8,7 +8,8 @@ import {
   DisplaySupporters,
   NoSupporters
 } from "@/features/supporters/components";
-import getSupporters from "@/features/supporters/api/getSupporters";
+import { getSupporters } from "@/features/supporters";
+import type { Supporter } from "@/features/supporters";
 
 const RecentSupporters = () => {
   const creatorId = "creator_001";

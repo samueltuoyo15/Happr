@@ -1,25 +1,24 @@
 import axios from "axios";
+import type { AxiosResponse } from "axios";
 
 const baseURL = import.meta.env.VITE_API_URL;
+
 const axiosFacade = axios.create({
-  baseURL: baseURL,
+  baseURL,
   timeout: 10000
 });
 
-// Add token automatically
-/*
-http.interceptors.request.use(config => {
-  const token = localStorage.getItem("token");
-  if (token) config.headers.Authorization = `Bearer ${token}`;
-  return config;
-});
-*/
+// Optional token interceptor
+// axiosFacade.interceptors.request.use((config) => {
+//   const token = localStorage.getItem("token");
+//   if (token) config.headers = { ...config.headers, Authorization: `Bearer ${token}` };
+//   return config;
+// });
 
-// Handle responses + errors
 axiosFacade.interceptors.response.use(
-  response => response.data,
+  <T>(response: { data: T }): T => response.data,
   error => {
-    console.error("Error from Axios:", error);
+    console.error("Axios error:", error);
     return Promise.reject(error);
   }
 );

@@ -3,6 +3,7 @@ import SupportersSkeletonLoader from "./SupportersSkeletonLoader";
 import DisplaySupporters from "./DisplaySupporters";
 import NoSupporters from "./NoSupporters";
 import getSupporters from "../api/getSupporters";
+import type { Supporter } from "../types";
 
 const AllSupporters = () => {
   const creatorId = "creator_001";
