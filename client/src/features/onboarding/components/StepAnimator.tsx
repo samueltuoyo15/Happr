@@ -11,7 +11,7 @@ const StepAnimator = ({ currentStep, totalSteps }: PageProps) => {
       aria-label="account setup progress bar"
       className="w-full flex flex-col items-center gap-2"
     >
-      <div className="w-full h-6 flex items-center border rounded-full bg-muted overflow-hidden">
+      <div className="w-full h-6 flex items-center px-[1%] border rounded-full bg-muted overflow-hidden">
         <div
           className="h-4 bg-primary rounded-full transition-all duration-500"
           style={{ width: `${percentage}%` }}

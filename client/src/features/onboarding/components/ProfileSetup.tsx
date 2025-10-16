@@ -42,11 +42,12 @@ const ProfileSetup = ({
 
       <div className="w-full flex flex-col gap-3">
         <label htmlFor="about-input"> About </label>
-        <Input
-          type="text"
+        <textarea
           id="about-input"
+          autoComplete="off"
           value={about}
           onChange={e => setAbout(e.target.value)}
+          className="w-full h-[10rem] p-3 text-sm bg-input text-input-foreground border border-input rounded-lg"
         />
       </div>
 

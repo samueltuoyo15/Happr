@@ -1,7 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "@/components/ui/Button";
-import { StepAnimator, Welcome, ProfileSetup } from "@/features/onboarding";
+import {
+  StepAnimator,
+  Welcome,
+  ProfileSetup,
+  AllDone
+} from "@/features/onboarding";
 
 const Onboarding = () => {
   const navigate = useNavigate();
@@ -26,24 +31,26 @@ const Onboarding = () => {
         setUserLink={setUserLink}
       />
     ),
-    3: <div></div>
+    3: <AllDone />
+  };
+
+  const handleSubmit = async () => {
+    console.log(name, about, userLink);
   };
 
   return (
     <section
       aria-label="onboarding section"
-      className="w-full flex flex-col gap-8"
+      className="w-full flex flex-col gap-8 mb-6"
     >
       <StepAnimator currentStep={currentStep} totalSteps={totalSteps} />
 
       {steps[currentStep] || null}
 
       <Button
-        onClick={() => {
+        onClick={async () => {
           if (currentStep === 2) {
-            {
-              /* handle form submission for basic info */
-            }
+            await handleSubmit();
             setCurrentStep(prev => prev + 1);
           } else if (currentStep === totalSteps) {
             navigate("/dashboard");
@@ -52,7 +59,7 @@ const Onboarding = () => {
           }
         }}
       >
-        {currentStep === totalSteps ? "Finish" : "Next Step"}
+        {currentStep === totalSteps ? "Goto Dashboard" : "Next Step"}
       </Button>
     </section>
   );
