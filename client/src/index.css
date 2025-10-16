@@ -28,8 +28,8 @@
     --input-foreground: 40, 36, 60;
     --input-border: 230, 226, 240;
 
-    --destructive: 230, 70, 90;
-    --destructive-foreground: 255, 255, 255;
+    --destructive: 254, 202, 202;
+    --destructive-foreground: 185, 28, 28;
 
     --border: 232, 228, 242;
     --radius: 0.85rem;

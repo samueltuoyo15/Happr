@@ -1,5 +1,5 @@
 import type { Dispatch, SetStateAction } from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Link, useLocation } from "react-router-dom";
 import {
   X,
@@ -16,7 +16,7 @@ type NavLinks = { icon: React.ElementType; text: string; url: string };
 const navLinks: NavLinks[] = [
   { icon: LayoutPanelLeft, text: "Dashboard", url: "/dashboard" },
   { icon: Heart, text: "Supporters", url: "/supporters" },
-  { icon: Wallet, text: "Payouts", url: "/payouts" },
+  { icon: Wallet, text: "Payout", url: "/payout" },
   { icon: Settings, text: "Settings", url: "/settings" }
 ];
 

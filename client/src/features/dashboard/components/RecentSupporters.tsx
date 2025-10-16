@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { ChartColumn } from "lucide-react";
+import ErrorBox from "@/components/ui/ErrorBox";
 
 // imported from other features
 import {
@@ -8,7 +9,8 @@ import {
   DisplaySupporters,
   NoSupporters
 } from "@/features/supporters/components";
-import getSupporters from "@/features/supporters/api/getSupporters";
+import { getSupporters } from "@/features/supporters";
+import type { Supporter } from "@/features/supporters";
 
 const RecentSupporters = () => {
   const creatorId = "creator_001";
@@ -23,20 +25,6 @@ const RecentSupporters = () => {
     queryKey: ["recent", "supporters", creatorId],
     enabled: !!creatorId
   });
-
-  if (isLoading) return <SupportersSkeletonLoader />;
-
-  if (isError)
-    return (
-      <div className="w-full flex flex-col items-center gap-2 p-4 bg-red-100 text-red-700 text-center rounded-md">
-        <h3 className="text-2xl">Error loading supporters</h3>
-        <p>
-          {error instanceof Error
-            ? error.message
-            : "Something went wrong. Please try again."}
-        </p>
-      </div>
-    );
 
   return (
     <section className="relative w-full flex flex-col gap-4 p-4 border border-border rounded-xl">
@@ -54,7 +42,18 @@ const RecentSupporters = () => {
         aria-label="recent-supporters"
         className="w-full block hide-scrollbar overflow-x-auto overflow-y-visible"
       >
-        {supporters.length === 0 ? (
+        {isLoading ? (
+          <SupportersSkeletonLoader />
+        ) : isError ? (
+          <ErrorBox
+            title="Error loading supporters"
+            message={`${
+              error instanceof Error
+                ? error.message
+                : "Soemthing went wrong. Please try again"
+            }`}
+          />
+        ) : supporters.length === 0 ? (
           <NoSupporters />
         ) : (
           <DisplaySupporters supporters={supporters} />

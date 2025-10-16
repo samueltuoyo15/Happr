@@ -16,7 +16,7 @@ const SupportersSkeletonLoader = () => {
         {Array.from({ length: 10 }).map((_, idx) => (
           <tr
             key={idx}
-            className="odd:bg-card [&_td]:min-w-32 [&_td]:max-w-[12rem] [&_td]:px-5 [&_td]:py-3 [&_td]:border"
+            className="[&_td]:min-w-32 [&_td]:max-w-[12rem] [&_td]:px-5 [&_td]:py-3 [&_td]:border"
           >
             <td>
               <SkeletonLoader className="h-6 w-24" />

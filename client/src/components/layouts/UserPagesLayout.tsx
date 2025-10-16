@@ -1,29 +1,25 @@
-import useIsMobile from "@/hooks/use-mobile";
 import { Outlet } from "react-router-dom";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 
 const Layout = () => {
-  const isMobile = useIsMobile();
-
   return (
     <div data-page="userPages" className="flex flex-col min-h-screen">
-      <header className={isMobile ? "px-[5%]" : "px-[2%]"}>
+      <header className="px-[5%] md:px-[2%]">
         <Navbar />
       </header>
 
-      {!isMobile ? (
-        <main className="h-[calc(100vh-64px)] grid grid-cols-[16vw_1fr] justify-center gap-6">
+      <main className="w-full md:h-[calc(100vh-64px)] md:grid md:grid-cols-[16vw_1fr] md:gap-6">
+        {/* Sidebar: only visible on larger screens */}
+        <aside className="hidden md:block">
           <Sidebar setIsMenuOpened={() => {}} />
-          <div className="overflow-y-auto pr-4 pt-6">
-            <Outlet />
-          </div>
-        </main>
-      ) : (
-        <main className="w-full px-[5%] py-4">
+        </aside>
+
+        {/* Main content */}
+        <div className="w-full overflow-y-auto px-[5%] py-4 md:px-[2%] md:pt-6">
           <Outlet />
-        </main>
-      )}
+        </div>
+      </main>
     </div>
   );
 };

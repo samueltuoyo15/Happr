@@ -1,7 +1,7 @@
 const NoSupporters = () => {
   return (
     <div
-      aria-labelledBy="No Supporters yet"
+      aria-labelledby="No Supporters yet"
       className="w-full flex flex-col items-center gap-2 p-4 bg-accent text-accent-foreground text-center rounded-md"
     >
       <h3 className="text-2xl">No supporters yet</h3>
