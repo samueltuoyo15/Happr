@@ -3,7 +3,11 @@ import { motion } from "framer-motion";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { formatNaira } from "@/utils/formatters";
 
-const durationFilters: string[] = ["all-time", "30-days", "90-days"];
+const durationFilters: "all-time" | "30-days" | "90-days" = [
+  "all-time",
+  "30-days",
+  "90-days"
+];
 
 const UserStats = () => {
   const [statsDuration, setStatsDuration] = useState<

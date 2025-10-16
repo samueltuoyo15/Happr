@@ -1,19 +1,18 @@
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import CtaButton from "./CtaButton";
 
 const HeroSection = () => {
   const navigate = useNavigate();
 
-  // Reusable variants
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: {},
     visible: {
       transition: { staggerChildren: 0.25 }
     }
   };
 
-  const bounceUp = {
+  const bounceUp: Variants = {
     hidden: { y: -40, opacity: 0, rotate: -3 },
     visible: {
       y: 0,
@@ -28,7 +27,7 @@ const HeroSection = () => {
     }
   };
 
-  const springyEntrance = {
+  const springyEntrance: Variants = {
     hidden: { y: 20, opacity: 0, scale: 0.95 },
     visible: {
       y: 0,
@@ -43,7 +42,7 @@ const HeroSection = () => {
     }
   };
 
-  const scaleIn = {
+  const scaleIn: Variants = {
     hidden: { scale: 0 },
     visible: {
       scale: 1,
@@ -69,7 +68,6 @@ const HeroSection = () => {
         animate="visible"
         className="w-full flex flex-col items-center gap-3 text-center"
       >
-        {/* Heading */}
         <motion.h1
           variants={bounceUp}
           className="w-[95%] text-primary text-4xl"
@@ -77,13 +75,11 @@ const HeroSection = () => {
           Made with love. Paid in Smiles.
         </motion.h1>
 
-        {/* Subtext */}
         <motion.p variants={springyEntrance} className="w-[85%]">
           Happr lets your fans send Smiles — fun, instant tips that go straight
           to your account. You create, they support, everyone’s Happr.
         </motion.p>
 
-        {/* Button */}
         <motion.div
           variants={scaleIn}
           whileHover={{
@@ -97,7 +93,6 @@ const HeroSection = () => {
           </CtaButton>
         </motion.div>
 
-        {/* Tagline */}
         <motion.p
           variants={springyEntrance}
           animate={floatEffect}
