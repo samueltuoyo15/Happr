@@ -1,4 +1,5 @@
 import axios from "axios";
+import type { AxiosRequestConfig } from "axios";
 
 const baseURL = import.meta.env.VITE_API_URL;
 
@@ -7,20 +8,32 @@ const axiosFacade = axios.create({
   timeout: 10000
 });
 
-// Optional token interceptor
-// axiosFacade.interceptors.request.use((config) => {
-//   const token = localStorage.getItem("token");
-//   if (token) config.headers = { ...config.headers, Authorization: `Bearer ${token}` };
-//   return config;
-// });
-
-// Typed response interceptor
+// Response interceptor to unwrap `data`
 axiosFacade.interceptors.response.use(
   <T>(response: { data: T }): T => response.data,
-  error => {
-    console.error("Axios error:", error);
-    return Promise.reject(error);
-  }
+  error => Promise.reject(error)
 );
 
-export default axiosFacade;
+// Define a new interface for your unwrapped facade
+interface Facade {
+  <T = any>(config: AxiosRequestConfig): Promise<T>;
+  get<T = any>(url: string, config?: AxiosRequestConfig): Promise<T>;
+  delete<T = any>(url: string, config?: AxiosRequestConfig): Promise<T>;
+  post<T = any>(
+    url: string,
+    data?: any,
+    config?: AxiosRequestConfig
+  ): Promise<T>;
+  put<T = any>(
+    url: string,
+    data?: any,
+    config?: AxiosRequestConfig
+  ): Promise<T>;
+  patch<T = any>(
+    url: string,
+    data?: any,
+    config?: AxiosRequestConfig
+  ): Promise<T>;
+}
+
+export default axiosFacade as Facade;
