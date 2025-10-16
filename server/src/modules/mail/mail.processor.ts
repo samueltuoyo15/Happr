@@ -15,7 +15,7 @@ export class MailProcessor extends WorkerHost {
 
         switch(type){
             case "verification":
-             await this.mailService.sendVerificationEmail(data.email, data.token)
+             await this.mailService.sendVerificationEmail(data.email, data.username, data.token)
              break 
             
             case "welcome":
