@@ -1,4 +1,4 @@
-import axios from "@/lib";
+import { axios } from "@/lib";
 import type { Supporter } from "../types";
 
 const getSupporters = async (
