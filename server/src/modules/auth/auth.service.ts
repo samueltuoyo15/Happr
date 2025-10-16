@@ -81,7 +81,7 @@ export class AuthService {
         const user = await this.prisma.user.findUnique({ where: { email: dto.email }})
         if(!user) throw new UnauthorizedException({ success: false, data: [], message: "Invalid credentials" })
 
-        const validPassword = await argon2.verify(user.password, dto.password)
+        const validPassword = await argon2.verify(user?.password ||"", dto.password)
         if(!validPassword) throw new UnauthorizedException({ success: false, data: [], message: "Invalid credentials" })
         
         if(!user.is_verified) throw new UnauthorizedException({ success: false, data:[], message: "Your account has not been verified yet, kindly check your email"})

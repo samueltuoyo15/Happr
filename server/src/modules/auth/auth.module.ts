@@ -3,9 +3,14 @@ import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { JwtModule } from '@nestjs/jwt';
 import { PrismaService } from '../../../prisma/prisma.service';
+import { BullModule } from '@nestjs/bullmq';
 
 @Module({
-  imports: [JwtModule.register({ global: true })],
+  imports: [JwtModule.register({ global: true }),
+    BullModule.registerQueue({
+      name: "email-queue"
+    })
+  ],
   providers: [AuthService, PrismaService],
   controllers: [AuthController]
 })
