@@ -14,15 +14,29 @@ const RecentSupporters = () => {
   const creatorId = "creator_001";
 
   const {
-    data: supporters,
+    data: supporters = [],
     isLoading,
     isError,
     error
-  } = useQuery({
+  } = useQuery<Supporter[]>({
     queryFn: () => getSupporters(creatorId, 5),
     queryKey: ["recent", "supporters", creatorId],
     enabled: !!creatorId
   });
+
+  if (isLoading) return <SupportersSkeletonLoader />;
+
+  if (isError)
+    return (
+      <div className="w-full flex flex-col items-center gap-2 p-4 bg-red-100 text-red-700 text-center rounded-md">
+        <h3 className="text-2xl">Error loading supporters</h3>
+        <p>
+          {error instanceof Error
+            ? error.message
+            : "Something went wrong. Please try again."}
+        </p>
+      </div>
+    );
 
   return (
     <section className="relative w-full flex flex-col gap-4 p-4 border border-border rounded-xl">
@@ -40,18 +54,9 @@ const RecentSupporters = () => {
         aria-label="recent-supporters"
         className="w-full block hide-scrollbar overflow-x-auto overflow-y-visible"
       >
-        {isLoading && <SupportersSkeletonLoader />}
-
-        {isError && (
-          <div className="w-full flex flex-col items-center gap-2 p-4 bg-red-100 text-red-700 text-center rounded-md">
-            <h3 className="text-2xl">Error loading supporters</h3>
-            <p>{error.message || "Something went wrong. Please try again."}</p>
-          </div>
-        )}
-
-        {!isLoading && !isError && supporters?.length === 0 && <NoSupporters />}
-
-        {!isLoading && !isError && supporters?.length > 0 && (
+        {supporters.length === 0 ? (
+          <NoSupporters />
+        ) : (
           <DisplaySupporters supporters={supporters} />
         )}
       </div>
