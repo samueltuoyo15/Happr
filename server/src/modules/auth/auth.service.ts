@@ -50,7 +50,7 @@ export class AuthService {
         const { email_token } = this.generateMailToken(user.id, dto.username, dto.email)
         await this.emailQueue.add("send-verification", {
             type: "verification",
-            data: { email: user.email, token: email_token }
+            data: { email: dto.email, username: dto.username, token: email_token }
         })
         return { success: true, data: [], message: "Account created. Please verify your email"}
     }

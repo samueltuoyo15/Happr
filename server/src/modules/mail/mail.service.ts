@@ -11,15 +11,15 @@ export class MailService {
         }
     })
 
-    async sendVerificationEmail(email: string, token: string) {
+    async sendVerificationEmail(email: string, username: string, token: string) {
         const verifyLink = `${process.env.FRONTEND_DOMAIN}/verify-email?token=${token}`
 
         await this.transporter.sendMail({
-            from: `Samuel at Happr`,
+            from: `Happr`,
             to: email,
             subject: "Verify your email address to complete your account registration",
             html: `
-                <h2>Hi, i'm Samuel from Happr, thanks for registering an account with us, to complete this registration</h2>
+                <h2>Hey ${username}, thanks for registering an account with us, to complete this registration</h2>
                 <p> Kindly verify your email by clicking the button below </p>
                 <a href="${verifyLink}" style="color:#4f46e5"> Verify Email </a>
             `
@@ -28,7 +28,7 @@ export class MailService {
 
    async sendWelcomeMail(email: string, username: string) {
     await this.transporter.sendMail({
-        from: `Samuel at Happr <no-reply@happr.me>`,
+        from: `CharmingDc at Happr <no-reply@happr.me>`,
         to: email,
         subject: "Welcome to Happr 🎉 — Let’s get you smiling!",
         html: `
