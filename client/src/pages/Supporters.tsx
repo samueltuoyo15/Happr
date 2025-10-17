@@ -15,12 +15,14 @@ const Supporters = () => {
       <div className="w-fit flex items-center gap-4">
         <Button
           variant={currentTab === "supporters" ? "filled" : "outline"}
+          className="rounded-md"
           onClick={() => setCurrentTab("supporters")}
         >
           Supporters
         </Button>
         <Button
           variant={currentTab === "settings" ? "filled" : "outline"}
+          className="rounded-md"
           onClick={() => setCurrentTab("settings")}
         >
           Settings

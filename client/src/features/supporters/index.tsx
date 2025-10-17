@@ -1,5 +1,5 @@
 // importing functions & types
-import getSupporters from "./api/getSupporters";
+import getSupporters from "./utils/getSupporters";
 import type { Supporter } from "./types";
 
 // exporting functions

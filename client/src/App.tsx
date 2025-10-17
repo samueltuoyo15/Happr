@@ -10,6 +10,7 @@ const AuthLayout = lazy(() =>
 );
 const SignupPage = lazy(() => import("@/pages/SignUp"));
 const SigninPage = lazy(() => import("@/pages/SignIn"));
+const ResetPassword = lazy(() => import("@/pages/ResetPassword"));
 
 // User Pages
 const UserPagesLayout = lazy(
@@ -18,6 +19,7 @@ const UserPagesLayout = lazy(
 const Dashboard = lazy(() => import("@/pages/Dashboard"));
 const SupportersPage = lazy(() => import("@/pages/Supporters"));
 const PayoutPage = lazy(() => import("@/pages/Payout"));
+const OnboardingPage = lazy(() => import("@/pages/Onboarding"));
 
 const App = () => {
   return (
@@ -30,6 +32,8 @@ const App = () => {
           <Route element={<AuthLayout />}>
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/signin" element={<SigninPage />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/complete-setup" element={<OnboardingPage />} />
           </Route>
 
           {/* User Routes */}
