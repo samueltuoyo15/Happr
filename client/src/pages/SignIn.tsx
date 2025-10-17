@@ -2,7 +2,10 @@ import { SigninForm } from "@/features/auth";
 
 const SignIn = () => {
   return (
-    <section className="w-full flex items-center justify-center">
+    <section
+      aria-label="Sign In Page"
+      className="w-full flex items-center justify-center"
+    >
       <SigninForm />
     </section>
   );

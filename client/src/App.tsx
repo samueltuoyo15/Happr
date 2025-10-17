@@ -10,6 +10,7 @@ const AuthLayout = lazy(() =>
 );
 const SignupPage = lazy(() => import("@/pages/SignUp"));
 const SigninPage = lazy(() => import("@/pages/SignIn"));
+const ResetPassword = lazy(() => import("@/pages/ResetPassword"));
 
 // User Pages
 const UserPagesLayout = lazy(
@@ -31,6 +32,7 @@ const App = () => {
           <Route element={<AuthLayout />}>
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/signin" element={<SigninPage />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="/complete-setup" element={<OnboardingPage />} />
           </Route>
 

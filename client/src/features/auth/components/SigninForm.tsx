@@ -45,8 +45,11 @@ const SigninForm = () => {
           value={password}
           onChange={e => setPassword(e.target.value)}
           placeholder="Enter your password"
-          className="mb-6"
         />
+
+        <Link to="/reset-password" className="self-end text-primary mt-2 mb-6">
+          <strong> Forgot your password?</strong>
+        </Link>
 
         <Button disabled={!email || !password} className="w-full h-14">
           Sign In
@@ -54,7 +57,7 @@ const SigninForm = () => {
       </form>
 
       <p className="sef-center text-center -mt-2">
-        {"Don't have an account?"},
+        {"Don't have an account?"}
         <Link to="/signup" className="text-primary">
           {""} Signup here
         </Link>

@@ -1,117 +1,110 @@
-# Happr: Empowering Creators, One Smile at a Time ✨
+# Happr: Empowering Creators with Instant Fan Support 🌟
 
-## Overview
-Happr is a modern, responsive platform enabling content creators to receive support from their fans through "Smiles." Built with TypeScript, React 19, and Vite, it offers a seamless experience for creators to manage their page, view supporter statistics, and engage with their community. It integrates robust authentication and efficient data fetching with TanStack Query, all styled beautifully with Tailwind CSS and enhanced with smooth animations using Motion.
+Happr is a modern, responsive platform designed to enable creators to effortlessly receive financial support, affectionately termed "Smiles," directly from their fanbase. It provides a streamlined experience for creators to set up personalized pages, track supporters, manage payout settings, and connect with their community. Built with a robust React and TypeScript frontend, Happr emphasizes performance, maintainability, and a delightful user experience.
 
-## Features
-- **Intuitive User Dashboard**: A personalized dashboard displaying user statistics like earnings and supporter count, along with recent supporter activity.
-- **Secure Authentication System**: Streamlined sign-up and sign-in flows with options for username claiming and potential third-party integrations (e.g., Google Auth).
-- **Supporter Management**: Comprehensive section for viewing all supporters, their contributions, messages, and adjusting personal page settings.
-- **Dynamic UI/UX**: Utilizes React Router DOM for navigation, TanStack Query for efficient data fetching and caching, and Motion for smooth, engaging animations.
-- **Responsive Design**: Crafted with Tailwind CSS, ensuring a consistent and adaptive user experience across various devices, from mobile to desktop.
-- **Utility Hooks**: Custom React hooks (`useIsMobile`, `useCopyToClipboard`) for enhanced functionality and code reusability.
-- **Custom Theming**: Extensible Tailwind CSS configuration with custom color palettes and typography.
+## Features ✨
 
-## Getting Started
+*   **Seamless Creator Onboarding:** A guided, multi-step process for new creators to set up their profile, including username selection, bio, and social links.
+*   **Personalized Creator Pages:** Each creator gets a unique `happr.me/username` link for their fans to send support.
+*   **Intuitive Dashboard:** An overview of recent supporters, earnings, and key statistics, offering insights into fan engagement.
+*   **Real-time Supporter Tracking:** Detailed list of all supporters with options to view messages, amounts, and support timestamps.
+*   **Dynamic Payout Settings:** Configure thank you messages, customize support button wording, and adjust smile pricing.
+*   **Secure User Authentication:** Robust sign-up, sign-in, and password reset functionalities.
+*   **Responsive Design:** Optimized for a flawless experience across various devices and screen sizes, from mobile to desktop.
+*   **Efficient State Management:** Leverages TanStack Query for effective data fetching, caching, and synchronization, ensuring a snappy interface.
 
-To get a local copy up and running, follow these simple steps.
+## Getting Started 🚀
+
+Follow these steps to get a local copy of Happr up and running on your machine.
 
 ### Installation
-Clone the repository:
-```bash
-git clone git@github.com:Charmingdc/Happr
-```
 
-Navigate into the project directory:
-```bash
-cd Happr
-```
-
-Install the dependencies:
-```bash
-npm install
-# or
-yarn install
-```
-
-Start the development server:
-```bash
-npm run dev
-# or
-yarn dev
-```
-
-This will launch the application in your browser, typically at `http://localhost:5173`.
+1.  **Clone the Repository**:
+    ```bash
+    git clone git@github.com:Charmingdc/Happr
+    ```
+2.  **Navigate to the project directory**:
+    ```bash
+    cd Happr
+    ```
+3.  **Install dependencies**:
+    ```bash
+    npm install
+    # or yarn install
+    # or pnpm install
+    ```
+4.  **Start the development server**:
+    ```bash
+    npm run dev
+    # or yarn dev
+    # or pnpm dev
+    ```
+    The application will typically be available at `http://localhost:5173`.
 
 ### Environment Variables
-This project currently does not require any specific environment variables for local development beyond what Vite handles by default. However, for a production environment or when integrating with an actual backend, you would typically define variables for API endpoints, authentication keys, and other sensitive information.
 
-## Usage
+To connect Happr to its backend services, you will need to configure environment variables. Create a `.env` file in the root of the project (if not already present) and add the following:
 
-Happr provides a straightforward interface for creators and their supporters.
+```
+VITE_API_BASE_URL="http://localhost:3000/api" # Replace with your backend API URL
+```
+*Note: The current `axios` configuration in `@/lib` is assumed to be set up to use this base URL. Ensure your backend is running and accessible at the specified URL.*
 
-### Landing Page
-The public-facing landing page showcases Happr's value proposition, how it works, creator stories, and transparent pricing. Visitors can explore the platform's benefits and claim their own Happr page.
+## Usage 🧑‍💻
 
-### Authentication
-Users can navigate to `/signup` to create a new account by choosing a unique username and providing their email and password. Existing users can sign in at `/signin`.
+Once the development server is running, you can interact with the Happr platform:
 
-### Creator Dashboard
-Upon signing in, creators are directed to their personalized dashboard (`/dashboard`), where they can:
-- View a greeting with their unique Happr page link.
-- Copy their Happr page link to easily share with fans.
-- See key statistics like total earnings and supporter count.
-- Review recent supporter interactions.
+1.  **Landing Page (`/`)**: Explore the marketing site, learn about Happr's features, and understand how it works for creators.
+2.  **Sign Up (`/signup`)**: Begin your journey as a creator. You'll choose a unique username (which forms your public Happr page link) and then register your account.
+3.  **Onboarding (`/complete-setup`)**: After signing up, you'll be guided through a simple onboarding flow to set up your profile details like your name, a short bio, and links to your website or social media.
+4.  **Dashboard (`/dashboard`)**: As a logged-in creator, this is your central hub. View your recent supporters, total earnings, and various statistics.
+5.  **Supporters (`/supporters`)**: Access a comprehensive list of all your fans who have sent "Smiles," including their names, message, and amount. You can also adjust your support page settings here.
+6.  **Payout (`/payout`)**: Manage your payout preferences and view logs of your past transactions.
 
-### Supporters Page
-The dedicated supporters page (`/supporters`) allows creators to:
-- Browse a detailed list of all their supporters, including anonymous contributions, smile counts, amounts, and messages.
-- Switch between "Supporters" and "Settings" tabs to manage their page.
+## Technologies Used 🛠️
 
-### Settings
-Within the "Settings" tab on the supporters page, creators can:
-- Customize their "Thank You Message" shown to supporters.
-- Edit the wording on their support button.
-- Adjust the price per "smile" for their page.
+Happr is built with a modern and efficient technology stack:
 
-## Technologies Used
+| Technology | Description | Link |
+| :--------- | :---------- | :--- |
+| React | A declarative, component-based JavaScript library for building user interfaces. | [![React](https://img.shields.io/badge/React-61DAFB?style=flat&logo=react&logoColor=white)](https://react.dev/) |
+| TypeScript | A superset of JavaScript that adds static types, enhancing code quality and developer experience. | [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/) |
+| Vite | A next-generation frontend tooling that provides an extremely fast development experience. | [![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat&logo=vite&logoColor=white)](https://vitejs.dev/) |
+| Tailwind CSS | A highly customizable, utility-first CSS framework for rapidly building custom designs. | [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=flat&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/) |
+| React Router DOM | A collection of navigational components that compose declaratively with your application. | [![React Router DOM](https://img.shields.io/badge/React_Router-CA4245?style=flat&logo=reactrouter&logoColor=white)](https://reactrouter.com/en/main) |
+| TanStack Query | Powerful asynchronous state management for React, ideal for data fetching, caching, and synchronization. | [![TanStack Query](https://img.shields.io/badge/TanStack_Query-FF4154?style=flat&logo=reactquery&logoColor=white)](https://tanstack.com/query/latest) |
+| Axios | A popular promise-based HTTP client for making API requests. | [![Axios](https://img.shields.io/badge/Axios-5A29E4?style=flat&logo=axios&logoColor=white)](https://axios-http.com/) |
+| Sonner | An elegant and customizable toast component for presenting notifications. | [![Sonner](https://img.shields.io/badge/Sonner-FFBE00?style=flat&logo=javascript&logoColor=black)](https://sonner.emilkowalski.pl/) |
+| Lucide React | A collection of beautiful, community-maintained vector icons. | [![Lucide React](https://img.shields.io/badge/Lucide_React-2C3E50?style=flat&logo=lucide&logoColor=white)](https://lucide.dev/icons/) |
+| Motion | A tiny, zero-dependency animation library for the web. | [![Motion](https://img.shields.io/badge/Motion-000000?style=flat&logo=framer&logoColor=white)](https://motion.dev/) |
 
-| Technology         | Description                                                                                             | Link                                                                        |
-| :----------------- | :------------------------------------------------------------------------------------------------------ | :-------------------------------------------------------------------------- |
-| **TypeScript**     | A strongly typed superset of JavaScript that compiles to plain JavaScript.                              | [TypeScript](https://www.typescriptlang.org/)                               |
-| **React 19**       | A declarative, efficient, and flexible JavaScript library for building user interfaces.                 | [React](https://react.dev/)                                                 |
-| **Vite**           | A fast build tool that provides a lightning-fast development experience for modern web projects.        | [Vite](https://vitejs.dev/)                                                 |
-| **Tailwind CSS**   | A utility-first CSS framework for rapidly building custom designs without leaving your HTML.            | [Tailwind CSS](https://tailwindcss.com/)                                    |
-| **TanStack Query** | Powerful asynchronous state management for React, simplifying data fetching, caching, and synchronization. | [TanStack Query](https://tanstack.com/query/latest)                         |
-| **Motion**         | A simple yet powerful animation library for React by Framer, offering expressive and fluid UI animations. | [Motion](https://www.framer.com/motion/)                                    |
-| **React Router DOM** | A library for declarative routing in React applications, handling navigation and URL synchronization. | [React Router](https://reactrouter.com/en/main)                             |
-| **Axios**          | A promise-based HTTP client for the browser and Node.js, used for making API requests.                  | [Axios](https://axios-http.com/)                                            |
-| **Sonner**         | An opinionated toast component for React.                                                               | [Sonner](https://sonner.emilkowal.ski/)                                     |
-| **Lucide React**   | A simply beautiful open-source icon toolkit, providing a vast library of customizable SVG icons.        | [Lucide React](https://lucide.dev/guide/packages/lucide-react)              |
+## Contributing 🤝
 
-## Contributing
-We welcome contributions to Happr! To contribute:
+We welcome contributions to the Happr project! If you're looking to help, please follow these guidelines:
 
--   Fork the repository.
--   Create a new branch for your feature or bug fix: `git checkout -b feature/your-feature-name`
--   Make your changes and ensure tests pass.
--   Commit your changes with a descriptive message.
--   Push to your fork: `git push origin feature/your-feature-name`
--   Open a pull request to the `main` branch of this repository.
+*   **Fork the repository**.
+*   **Create a new branch** for your feature or bug fix: `git checkout -b feature/your-feature-name` or `git checkout -b bugfix/issue-description`.
+*   **Make your changes**, ensuring they adhere to the project's coding style and standards.
+*   **Commit your changes** with clear, descriptive messages.
+*   **Push your branch** to your forked repository.
+*   **Open a pull request** to the `main` branch of the original repository, detailing your changes.
 
-Please ensure your code adheres to the project's coding standards and includes appropriate documentation and tests.
+## Author Info 👤
 
-## Author Info
+Happr was developed with passion by Charmingdc. Connect with me:
 
--   **Your Name**: [Your Social Media Link (e.g., LinkedIn)](https://linkedin.com/in/yourprofile)
--   **Email**: [Your Email](mailto:your.email@example.com)
+*   **LinkedIn**: [Your LinkedIn Profile](https://linkedin.com/in/yourusername)
+*   **Twitter/X**: [@your_x_handle](https://x.com/your_x_handle)
+*   **Portfolio**: [Your Portfolio Website](https://yourportfolio.com)
 
 ---
-[![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen)](https://github.com/Charmingdc/Happr/actions)
+
+[![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
-[![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
-[![React Query](https://img.shields.io/badge/React_Query-FF4154?style=for-the-badge&logo=reactquery&logoColor=white)](https://tanstack.com/query/latest)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Top Language](https://img.shields.io/github/languages/top/Charmingdc/Happr?style=for-the-badge)](https://github.com/Charmingdc/Happr)
+[![Last Commit](https://img.shields.io/github/last-commit/Charmingdc/Happr?style=for-the-badge)](https://github.com/Charmingdc/Happr)
 
 [![Readme was generated by Dokugen](https://img.shields.io/badge/Readme%20was%20generated%20by-Dokugen-brightgreen)](https://www.npmjs.com/package/dokugen)
