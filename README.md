@@ -1,6 +1,6 @@
 # Happr - Your Platform for Instant Creator Support ✨
 
-
+<img src="./client/public/pic.png" />
 
 ## Project Overview
 Happr is a modern, single-page application meticulously crafted to empower creators by enabling their fans to send "Smiles" – fun, instant tips that seamlessly transfer to the creator's account. Engineered with React and TypeScript, Happr delivers an exceptionally smooth user experience, transparent pricing, and robust authentication. It is specifically tailored for creators in Nigeria, featuring seamless integration with Paystack for local payment processing.

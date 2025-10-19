@@ -8,7 +8,7 @@ import { BullModule } from '@nestjs/bullmq';
 @Module({
   imports: [ConfigModule.forRoot({ isGlobal: true }), 
     BullModule.forRoot({
-      connection: { url: process.env.REDIS_URL },
+      connection: { url: process.env.REDIS_URL! },
       defaultJobOptions: {
       attempts: 10,
       backoff: { type: 'exponential', delay: 2000 },
