@@ -5,6 +5,8 @@ import { ConfigModule } from "@nestjs/config"
 import { MailModule } from './modules/mail/mail.module';
 import { BullModule } from '@nestjs/bullmq';
 import { UserModule } from './modules/user/user.module';
+import { ThrottlerGuard, ThrottlerModule, throttlers } from "@nestjs/throttler"
+import { APP_GUARD } from '@nestjs/core';
 
 @Module({
   imports: [ConfigModule.forRoot({ isGlobal: true }), 
@@ -15,12 +17,16 @@ import { UserModule } from './modules/user/user.module';
       backoff: { type: 'exponential', delay: 2000 },
       removeOnComplete: true,
       removeOnFail: false,
-  }, 
+    }, 
     }),
+    ThrottlerModule.forRoot({ throttlers: [{ ttl: 10, limit: 5 }] }),
     AuthModule, 
     MailModule,
     UserModule],
-  providers: [PrismaService],
+  providers: [PrismaService, {
+    provide: APP_GUARD,
+    useClass: ThrottlerGuard,
+  }],
 })
 
 export class AppModule {}
