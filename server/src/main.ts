@@ -14,15 +14,14 @@ async function bootstrap() {
   app.setGlobalPrefix("api/v1")
   const config = new DocumentBuilder()
     .setTitle('Happr API')
-    .setDescription('API documentation for Happr backend')
+    .setDescription('API documentation for Happr')
     .setVersion('1.0')
     .addServer(process.env.BACKEND_DOMAIN!)
     .addBearerAuth({
       type: 'http',
       scheme: 'bearer',
       bearerFormat: 'JWT'
-    })
-    .build()
+    }).build()
 
   const document = SwaggerModule.createDocument(app, config)
 
