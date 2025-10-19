@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { MailService } from './mail.service';
 import { BullModule } from '@nestjs/bullmq';
-import { MailProcessor } from './mail.processor';
+import { MailWorker } from '../../workers/mail.worker';
 
 @Module({
   imports: [
@@ -16,7 +16,7 @@ import { MailProcessor } from './mail.processor';
       },
     })
   ],
-  providers: [MailService, MailProcessor],
+  providers: [MailService, MailWorker],
   exports: [MailService]
 })
 export class MailModule {}
