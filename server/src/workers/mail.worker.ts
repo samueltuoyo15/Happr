@@ -1,11 +1,11 @@
 import { Processor, WorkerHost } from '@nestjs/bullmq'
 import { Job } from 'bullmq'
-import { MailService } from './mail.service'
+import { MailService } from "../modules/mail/mail.service"
 import { Logger } from '@nestjs/common'
 
 @Processor("email-queue")
-export class MailProcessor extends WorkerHost {
-    private readonly logger = new Logger(MailProcessor.name)
+export class MailWorker extends WorkerHost {
+    private readonly logger = new Logger(MailWorker.name)
     constructor(private readonly mailService: MailService) {
         super()
     }

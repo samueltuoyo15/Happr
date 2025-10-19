@@ -77,6 +77,7 @@ export class AuthService {
             throw new BadRequestException({ success: false, data: [], message: "Invalid or expired token!"})
         }
     }
+    
     async signin(dto: SignInDTO): Promise<{ access_token: string, refresh_token: string}> {
         const user = await this.prisma.user.findUnique({ where: { email: dto.email }})
         if(!user) throw new UnauthorizedException({ success: false, data: [], message: "Invalid credentials" })

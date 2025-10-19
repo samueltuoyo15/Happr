@@ -10,7 +10,7 @@ async function bootstrap() {
     origin: [process.env.FRONTEND_DOMAIN],
     credentials: true
   })
-  console.log("ackend domain", process.env.BACKEND_DOMAIN)
+  
   app.setGlobalPrefix("api/v1")
   const config = new DocumentBuilder()
     .setTitle('Happr API')
