@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core'
 import { AppModule } from './app.module'
 import { Logger } from '@nestjs/common'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
+import * as cookieParser from "cookie-parser"
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
@@ -10,7 +11,7 @@ async function bootstrap() {
     origin: [process.env.FRONTEND_DOMAIN],
     credentials: true
   })
-  
+  app.use(cookieParser())
   app.setGlobalPrefix("api/v1")
   const config = new DocumentBuilder()
     .setTitle('Happr API')

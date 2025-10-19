@@ -1,9 +1,10 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { AuthModule } from './modules/auth/auth.module';
 import { PrismaService } from '../prisma/prisma.service';
 import { ConfigModule } from "@nestjs/config"
 import { MailModule } from './modules/mail/mail.module';
 import { BullModule } from '@nestjs/bullmq';
+import { UserModule } from './modules/user/user.module';
 
 @Module({
   imports: [ConfigModule.forRoot({ isGlobal: true }), 
@@ -17,7 +18,9 @@ import { BullModule } from '@nestjs/bullmq';
   }, 
     }),
     AuthModule, 
-    MailModule],
+    MailModule,
+    UserModule],
   providers: [PrismaService],
 })
+
 export class AppModule {}

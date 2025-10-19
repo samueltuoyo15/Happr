@@ -12,7 +12,7 @@ export class AuthController {
 
     @Get("username-availability")
     @HttpCode(200)
-    @ApiOperation({ summary: "Check username availability", description: "Verifies if a given username is already taken or available for registration.'"})
+    @ApiOperation({ summary: "Check username availability", description: "Verifies if a given username is already taken or available for registration."})
     @ApiResponse({ status: 200, description: "Username availability checked successfully", type: ApiResponseDTO })
     checkusername(@Query() dto: usernameAvailabilityDTO) {
         return this.authService.checkUsernameAvailability(dto)
