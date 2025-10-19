@@ -10,11 +10,13 @@ async function bootstrap() {
     origin: [process.env.FRONTEND_DOMAIN],
     credentials: true
   })
-
+  console.log("ackend domain", process.env.BACKEND_DOMAIN)
+  app.setGlobalPrefix("api/v1")
   const config = new DocumentBuilder()
     .setTitle('Happr API')
     .setDescription('API documentation for Happr backend')
     .setVersion('1.0')
+    .addServer(process.env.BACKEND_DOMAIN!)
     .addBearerAuth({
       type: 'http',
       scheme: 'bearer',
