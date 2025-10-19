@@ -6,6 +6,7 @@ import { ApiResponseDTO } from '../../dtos/api.response.dto';
 import { SignupDTO, SignInDTO, usernameAvailabilityDTO } from '../../dtos/auth.module.dto';
 import { Queue } from 'bullmq'
 import { InjectQueue } from '@nestjs/bullmq'
+import { generateAccessToken, generateRefreshToken, generateMailToken } from '../../common/utils/generate.token' 
 
 @Injectable()
 export class AuthService {
@@ -47,7 +48,7 @@ export class AuthService {
             }
         })
 
-        const { email_token } = this.generateMailToken(user.id, dto.username, dto.email)
+        const { email_token } = generateMailToken(user.id, dto.username, dto.email)
         await this.emailQueue.add("send-verification", {
             type: "verification",
             data: { email: dto.email, username: dto.username, token: email_token }
@@ -86,8 +87,8 @@ export class AuthService {
         if(!validPassword) throw new UnauthorizedException({ success: false, data: [], message: "Invalid credentials" })
         
         if(!user.is_verified) throw new UnauthorizedException({ success: false, data:[], message: "Your account has not been verified yet, kindly check your email"})
-        const { access_token } = this.generateAccessToken(user.id, user.email)
-        const { refresh_token } = this.generateRefreshToken(user.id,user.email)
+        const { access_token } = generateAccessToken(user.id, user.email)
+        const { refresh_token } = generateRefreshToken(user.id,user.email)
 
         await this.prisma.refreshToken.create({
             data: {
@@ -98,23 +99,5 @@ export class AuthService {
         })
 
         return { access_token, refresh_token }
-    }
-
-    private generateAccessToken (_id: string, email: string){
-        const payload = { _id, email }
-        const token = this.jwt.sign(payload, { secret: process.env.JWT_SECRET, expiresIn: "30m"})
-        return { access_token: token }
-    }
-
-    private generateRefreshToken (_id: string, email: string){
-        const payload = { _id, email }
-        const token = this.jwt.sign(payload, { secret: process.env.JWT_SECRET, expiresIn: "7d"})
-        return { refresh_token: token }
-    }
-
-    private generateMailToken (_id: string, username: string, email: string){
-        const payload = { _id, username, email }
-        const token = this.jwt.sign(payload, { secret: process.env.JWT_SECRET, expiresIn: "1d"})
-        return { email_token: token }
     }
 }

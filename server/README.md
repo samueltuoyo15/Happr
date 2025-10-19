@@ -2,7 +2,7 @@
 
 The Happr Backend API is a robust and scalable solution built with NestJS and TypeScript, designed to power a modern web application. It features secure user authentication, email verification, and efficient background job processing, providing a solid foundation for creator-focused platforms. This API aims for high performance, maintainability, and extensibility, offering a comprehensive suite of tools for managing user data and interactions.
 
-<img src="./client/public/pic.png" />
+<img src="./public/docs.png />
 
 ---
 
