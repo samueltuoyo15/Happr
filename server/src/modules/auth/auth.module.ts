@@ -6,10 +6,17 @@ import { PrismaService } from '../../../prisma/prisma.service';
 import { BullModule } from '@nestjs/bullmq';
 
 @Module({
-  imports: [JwtModule.register({ global: true }),
-    BullModule.registerQueue({
-      name: "email-queue"
-    })
+  imports: [JwtModule.register({ global: true }), 
+      BullModule.registerQueue({
+      name: "email-queue",
+      connection: { url: process.env.REDIS_URL },
+      defaultJobOptions: {
+        attempts: 5,
+        backoff: { type: 'exponential', delay: 5000 },
+        removeOnComplete: true,
+        removeOnFail: false,
+      },
+    }), 
   ],
   providers: [AuthService, PrismaService],
   controllers: [AuthController]

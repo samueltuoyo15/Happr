@@ -14,7 +14,7 @@ import { MailWorker } from '../../workers/mail.worker';
         removeOnComplete: true,
         removeOnFail: false,
       },
-    })
+    }), 
   ],
   providers: [MailService, MailWorker],
   exports: [MailService]
