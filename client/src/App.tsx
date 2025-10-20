@@ -16,10 +16,11 @@ const ResetPassword = lazy(() => import("@/pages/ResetPassword"));
 const UserPagesLayout = lazy(
   () => import("@/components/layouts/UserPagesLayout")
 );
+const OnboardingPage = lazy(() => import("@/pages/Onboarding"));
 const Dashboard = lazy(() => import("@/pages/Dashboard"));
 const SupportersPage = lazy(() => import("@/pages/Supporters"));
 const PayoutPage = lazy(() => import("@/pages/Payout"));
-const OnboardingPage = lazy(() => import("@/pages/Onboarding"));
+const SettingsPage = lazy(() => import("@/pages/SettingsPage"));
 
 const App = () => {
   return (
@@ -41,6 +42,7 @@ const App = () => {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/supporters" element={<SupportersPage />} />
             <Route path="/payout" element={<PayoutPage />} />
+            <Route path="/settings" element={<SettingsPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

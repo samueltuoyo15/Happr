@@ -1,6 +1,6 @@
 import { axios } from "@/lib";
 
-type UploadType = "pfp" | "crp";
+type UploadType = "avatar" | "cover";
 
 const uploadToServer = async (
   file: File,

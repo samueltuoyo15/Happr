@@ -9,6 +9,7 @@ type PageProps = {
   setAbout: Dispatch<SetStateAction<string>>;
   userLink: string;
   setUserLink: Dispatch<SetStateAction<string>>;
+  setAvatarFile: Dispatch<SetStateAction<File | null>>;
 };
 
 const ProfileSetup = ({
@@ -17,7 +18,8 @@ const ProfileSetup = ({
   about,
   setAbout,
   userLink,
-  setUserLink
+  setUserLink,
+  setAvatarFile
 }: PageProps) => {
   return (
     <form
@@ -28,6 +30,8 @@ const ProfileSetup = ({
 
       <AvatarUploader
         currentUrl={`https://ui-avatars.com/api/?name=Charmingdc&background=random&bold=true&size=128.png`}
+        size="large"
+        onFileSelect={file => setAvatarFile(file)}
       />
 
       <div className="w-full flex flex-col gap-3">

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Button from "@/components/ui/Button";
+import TabSection from "@/components/ui/TabSection";
 import { AllSupporters, Settings } from "@/features/supporters/components";
 
 const Supporters = () => {
@@ -12,22 +12,11 @@ const Supporters = () => {
       aria-label="supporters page"
       className="w-full flex flex-col gap-8"
     >
-      <div className="w-fit flex items-center gap-4">
-        <Button
-          variant={currentTab === "supporters" ? "filled" : "outline"}
-          className="rounded-md"
-          onClick={() => setCurrentTab("supporters")}
-        >
-          Supporters
-        </Button>
-        <Button
-          variant={currentTab === "settings" ? "filled" : "outline"}
-          className="rounded-md"
-          onClick={() => setCurrentTab("settings")}
-        >
-          Settings
-        </Button>
-      </div>
+      <TabSection
+        currentTab={currentTab}
+        setCurrentTab={setCurrentTab}
+        tabsList={["supporters", "settings"]}
+      />
 
       {currentTab === "supporters" ? <AllSupporters /> : <Settings />}
     </section>

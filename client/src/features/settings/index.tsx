@@ -1,3 +1,4 @@
+import AccountSettings from "./components/AccountSettings";
 import AvatarUploader from "./components/AvatarUploader";
 
-export { AvatarUploader };
+export { AccountSettings, AvatarUploader };

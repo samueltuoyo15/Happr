@@ -17,6 +17,7 @@ const Onboarding = () => {
   const [name, setName] = useState("");
   const [about, setAbout] = useState("");
   const [userLink, setUserLink] = useState("");
+  const [avatarFile, setAvatarFile] = useState<File | null>(null);
 
   // Object mapping of steps to components
   const steps: Record<number, React.ReactNode> = {
@@ -29,13 +30,14 @@ const Onboarding = () => {
         setAbout={setAbout}
         userLink={userLink}
         setUserLink={setUserLink}
+        setAvatarFile={setAvatarFile}
       />
     ),
     3: <AllDone />
   };
 
   const handleSubmit = async () => {
-    console.log(name, about, userLink);
+    console.log(name, about, userLink, avatarFile);
   };
 
   return (
