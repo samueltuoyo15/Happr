@@ -35,21 +35,24 @@ const AvatarUploader = ({
   };
 
   return (
-    <div className="flex flex-col items-center gap-2 relative">
+    <div className="flex flex-col gap-2 relative">
       <label
         htmlFor="file-uploader"
-        className="relative bg-black/20 text-foreground z-20 rounded-full cursor-pointer"
+        className="relative w-fit rounded-full overflow-hidden cursor-pointer"
       >
         <img
           src={preview}
           alt="Profile preview"
           className={`${sizeClasses[size]} rounded-full object-cover`}
         />
-        <Camera
-          aria-label="camera icon"
-          size={40}
-          className="absolute top-[35%] left-[37%] text-gray-300 z-50"
-        />
+
+        <div className="absolute inset-0 flex items-center justify-center transition-colors bg-transparent hover:bg-black/40">
+          <Camera
+            aria-label="camera icon"
+            size={36}
+            className="text-gray-200"
+          />
+        </div>
       </label>
 
       <input

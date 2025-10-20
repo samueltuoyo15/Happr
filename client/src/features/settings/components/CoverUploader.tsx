@@ -44,7 +44,8 @@ const CoverUploader = ({
           alt="Cover preview"
           className={`${aspectClasses[aspect]} object-cover w-full`}
         />
-        <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 hover:opacity-100 transition-opacity">
+
+        <div className="absolute inset-0 flex items-center justify-center transition-colors bg-transparent hover:bg-black/40">
           <ImagePlus
             aria-label="add cover"
             size={42}

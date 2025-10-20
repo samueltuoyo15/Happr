@@ -1,6 +1,6 @@
 import { useState } from "react";
 import TabSection from "@/components/ui/TabSection";
-import { AccountSettings } from "@/features/settings";
+import { AccountSettings, PageSettings } from "@/features/settings";
 
 const SettingsPage = () => {
   const [currentTab, setCurrentTab] = useState<"account info" | "public info">(
@@ -15,11 +15,7 @@ const SettingsPage = () => {
         tabsList={["account info", "public info"]}
       />
 
-      {currentTab === "account info" ? (
-        <AccountSettings />
-      ) : (
-        <h1> Public Info </h1>
-      )}
+      {currentTab === "account info" ? <AccountSettings /> : <PageSettings />}
     </section>
   );
 };
