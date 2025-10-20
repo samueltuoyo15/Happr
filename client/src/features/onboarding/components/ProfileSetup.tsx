@@ -28,11 +28,13 @@ const ProfileSetup = ({
     >
       <h3 className="text-2xl text-center"> Setup your page </h3>
 
-      <AvatarUploader
-        currentUrl={`https://ui-avatars.com/api/?name=Charmingdc&background=random&bold=true&size=128.png`}
-        size="large"
-        onFileSelect={file => setAvatarFile(file)}
-      />
+      <div className="w-full flex items-center justify-center">
+        <AvatarUploader
+          currentUrl={`https://ui-avatars.com/api/?name=Charmingdc&background=random&bold=true&size=128.png`}
+          size="large"
+          onFileSelect={file => setAvatarFile(file)}
+        />
+      </div>
 
       <div className="w-full flex flex-col gap-3">
         <label htmlFor="name-input"> Name </label>

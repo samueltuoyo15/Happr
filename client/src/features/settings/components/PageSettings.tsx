@@ -7,6 +7,9 @@ import AvatarUploader from "./AvatarUploader";
 const PageSettings = () => {
   const [displayName, setDisplayName] = useState<string>("Charmingdc");
   const [about, setAbout] = useState<string>("");
+  const [userLink, setUserLink] = useState<string>(
+    "https://adebayomuis.is-a.dev"
+  );
 
   return (
     <div aria-labelledby="Page Settings" className="w-full">
@@ -60,6 +63,19 @@ const PageSettings = () => {
             value={about}
             onChange={e => setAbout(e.target.value)}
             className="w-full h-[10rem] p-3 text-sm bg-input text-input-foreground border border-input rounded-lg"
+          />
+        </div>
+
+        <div className="w-full flex flex-col gap-4">
+          <label htmlFor="user-link-input">
+            <h3 className="text-xl"> Websie or Social Link </h3>
+          </label>
+
+          <Input
+            type="url"
+            id="user-link-input"
+            value={userLink}
+            onChange={e => setUserLink(e.target.value)}
           />
         </div>
 
