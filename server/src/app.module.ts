@@ -19,6 +19,7 @@ import { APP_GUARD } from '@nestjs/core';
       removeOnFail: false,
     }, 
     }),
+  
     ThrottlerModule.forRoot({ throttlers: [{ ttl: 10, limit: 5 }] }),
     AuthModule, 
     MailModule,
