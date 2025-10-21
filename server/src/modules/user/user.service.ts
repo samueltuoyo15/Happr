@@ -47,7 +47,6 @@ export class UserService {
     }
     if(!user.is_verified) throw new ForbiddenException({ success: false, data: [], message: "You account is not verified yet, check your email"})
    
-      // to aggregate donation totals
     const [totalReceived, totalGiven, uniqueSupporters] = await Promise.all([
       this.prisma.donation.aggregate({
         _sum: { amount: true },
