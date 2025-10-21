@@ -55,6 +55,6 @@ export class AuthController {
             maxAge: 7 * 24 * 60 * 60 * 1000,
         })
         
-        return { success: true, message: "User signedin successfully", data: []}
+        return { success: true, message: "User signedin successfully", token: access_token, data: []}
     }
 }

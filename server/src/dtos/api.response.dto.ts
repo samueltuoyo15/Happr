@@ -8,5 +8,8 @@ export class ApiResponseDTO<T = any> {
     message?: string
     
     @ApiProperty()
+    token?: string
+
+    @ApiProperty()
     data?: T
 }
