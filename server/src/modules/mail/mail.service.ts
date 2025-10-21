@@ -1,14 +1,17 @@
 import { Injectable } from '@nestjs/common';
-import * as nodemailer from 'nodemailer'
+import nodemailer from 'nodemailer'
 
 @Injectable()
 export class MailService {
     private transporter = nodemailer.createTransport({
         service: "gmail",
+        port: 587,
+        secure: false,
         auth: {
-            user: process.env.GMAIL_AUTH_USER,
-            pass: process.env.GMAIL_AUTH_PASS,
-        }
+            user: process.env.GMAIL_AUTH_USER!,
+            pass: process.env.GMAIL_AUTH_PASS!,
+        },
+        tls: { rejectUnauthorized: false }
     })
 
     async sendVerificationEmail(email: string, username: string, token: string) {
