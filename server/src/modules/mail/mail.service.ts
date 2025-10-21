@@ -12,7 +12,7 @@ export class MailService {
     })
 
     async sendVerificationEmail(email: string, username: string, token: string) {
-        const verifyLink = `${process.env.FRONTEND_DOMAIN}/verify-email?token=${token}`
+        const verifyLink = `${process.env.FRONTEND_DOMAIN}/complete-setup?token=${token}&username=${username}`
 
         await this.transporter.sendMail({
             from: `Happr`,
@@ -50,13 +50,13 @@ export class MailService {
                 <h3 style="color: #111827; margin-bottom: 10px;">Here’s how to get started:</h3>
                 <ol style="margin: 0; padding-left: 20px; color: #374151;">
                 <li>Create your Happr page — add your bio & bank info.</li>
-                <li>Share your <strong>happr.me/${username}</strong> link with your fans.</li>
+                <li>Share your <strong>${process.env.FRONTEND_DOMAIN}/${username}</strong> link with your fans.</li>
                 <li>Receive Smiles instantly, powered by <strong>Paystack</strong>.</li>
                 </ol>
             </div>
 
             <p style="text-align: center; margin: 30px 0;">
-                <a href="https://happr.me/${username}" 
+                <a href="${process.env.FRONTEND_DOMAIN}/${username}"
                 style="background-color: #4f46e5; color: #ffffff; text-decoration: none; padding: 12px 24px; border-radius: 8px; font-weight: 500; display: inline-block;">
                 Visit My Happr Page
                 </a>
