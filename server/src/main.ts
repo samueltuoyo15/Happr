@@ -4,6 +4,7 @@ import { Logger } from '@nestjs/common'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import cookieParser from "cookie-parser"
 import helmet from "helmet"
+import { Request, Response, NextFunction } from 'express'
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
@@ -14,6 +15,29 @@ async function bootstrap() {
   })
   app.use(cookieParser())
   app.setGlobalPrefix("api/v1")
+
+  const SWAGGER_AUTH_USER = process.env.SWAGGER_AUTH_USER!
+  const SWAGGER_AUTH_PASS = process.env.SWAGGER_AUTH_PASS!
+
+  app.use("/", (req: Request, res: Response, next: NextFunction) => {
+    const auth = { username: SWAGGER_AUTH_USER, password: SWAGGER_AUTH_PASS } 
+    const b64auth = (req.headers?.authorization || "").split(" ")[1]
+   
+    let username = ""
+    let password = ""
+
+    try{
+     [username, password] = Buffer.from(b64auth, "base64").toString("utf-8").split(":")
+    } catch {}
+    
+    if(username && password && username === auth.username && password === auth.password) {
+      return next()
+    }
+
+    res.set("WWW-Authenticate", "Basic realm='Swagger UI'")
+    res.status(401).send("Authentication required!")
+  })
+
   const config = new DocumentBuilder()
     .setTitle('Happr API')
     .setDescription('API documentation for Happr')
@@ -27,7 +51,7 @@ async function bootstrap() {
 
   const document = SwaggerModule.createDocument(app, config)
 
-  SwaggerModule.setup('docs', app, document, {
+  SwaggerModule.setup('/', app, document, {
     jsonDocumentUrl: 'docs/json'
   })
 
