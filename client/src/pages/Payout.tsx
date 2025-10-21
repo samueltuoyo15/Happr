@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ChartBar } from "lucide-react";
+import { PayoutSettings } from "@/features/payouts";
 
 const Payout = () => {
   return (
@@ -7,7 +8,7 @@ const Payout = () => {
       aria-label="Payout Settings"
       className="w-full flex flex-col gap-8"
     >
-      <div className="w-full flex items-center justify-between gap-3 mb-4">
+      <div className="w-full flex items-center justify-between gap-3">
         <h2 className="text-2xl">Payout Settings</h2>
 
         <Link
@@ -18,6 +19,8 @@ const Payout = () => {
           <ChartBar /> Payout Logs
         </Link>
       </div>
+
+      <PayoutSettings />
     </section>
   );
 };
