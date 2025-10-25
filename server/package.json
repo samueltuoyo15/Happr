@@ -19,9 +19,9 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "studio": "npx prisma studio",
-    "generate": "prisma generate --schema ./prisma/schema.prisma",
+    "generate": "prisma generate --no-engine --schema ./prisma/schema.prisma",
     "migrate": "prisma migrate dev --schema ./prisma/schema.prisma",
-    "postinstall": "prisma generate --schema ./prisma/schema.prisma"
+    "postinstall": "prisma generate --no-engine --schema ./prisma/schema.prisma"
   },
   "dependencies": {
     "@nestjs/bullmq": "^11.0.4",
